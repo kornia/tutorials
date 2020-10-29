@@ -24,25 +24,30 @@ sys.path.append(current_path)
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'nbsphinx',
     'sphinx.ext.mathjax',
-    'sphinx_gallery.gen_gallery',
+    #'sphinx_gallery.gen_gallery',
 ]
+exclude_patterns = ['_build', '*.ipynb_checkpoints']
 
 
 # -- Sphinx-gallery configuration --------------------------------------------
 
-import pdb;pdb.set_trace()
-examples_dir = os.path.join(current_path, "beginner_source")
+'''examples_dir = os.path.join(current_path, "beginner_source")
 sphinx_gallery_conf = {
-    #'doc_module': 'kornia',
     'examples_dirs': [examples_dir],   # path to your example scripts
     'gallery_dirs': ['tutorials'],  # path where to save gallery generated output
     'filename_pattern': 'tutorial.ipynb',
-}
+}'''
 
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# I execute the notebooks manually in advance. If notebooks test the code,
+# they should be run at build time.
+nbsphinx_execute = 'never'
+nbsphinx_allow_errors = True
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -74,13 +79,6 @@ release = kornia.__version__
 # Usually you set "language" from the command line for these cases.
 language = None
 
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', '.ipynb_checkpoints']
-#exclude_patterns += sphinx_gallery_conf['examples_dirs']
-exclude_patterns += ['*/index.rst']
-
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
@@ -93,7 +91,7 @@ todo_include_todos = True
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+#html_static_path = ['_static']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.

@@ -1,0 +1,5 @@
+sphinx >=2.1, <3
+sphinx_rtd_theme
+nbsphinx
+nbconvert
+pandoc

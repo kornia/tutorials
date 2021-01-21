@@ -1,9 +1,0 @@
-sphinx==1.8.2
-sphinx-gallery==0.3.1
-sphinx-nbexamples
-sphinx_rtd_theme==0.4.3
-tqdm
-numpy
-matplotlib
-torch>=1.6
-kornia>=0.4

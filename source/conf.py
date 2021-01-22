@@ -105,7 +105,7 @@ nbsphinx_execute = 'never'
 
 # This is processed by Jinja2 and inserted before each notebook
 nbsphinx_prolog = r"""
-{% set docname = 'docs/' + env.doc2path(env.docname, base=None) %}
+{% set docname = 'source/' + env.doc2path(env.docname, base=None) %}
 
 .. only:: html
 
@@ -117,7 +117,7 @@ nbsphinx_prolog = r"""
         Interactive online version:
         :raw-html:`<a href="https://colab.research.google.com/github/kornia/tutorials/blob/master/{{ docname }}"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" style="vertical-align:text-bottom"></a>`
         
-    __ https://github.com/google/jax/blob/
+    __ https://github.com/kornia/tutorials/blob/
         {{ env.config.release }}/{{ docname }}
 """
 

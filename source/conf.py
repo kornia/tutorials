@@ -115,7 +115,7 @@ nbsphinx_prolog = r"""
     .. nbinfo::
     
         Interactive online version:
-        :raw-html:`<a href="https://colab.research.google.com/github/kornia/tutorials/blob/master/{{ docname }}"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" style="vertical-align:text-bottom"></a>`
+        :raw-html:`<a href="https://colab.research.google.com/github/kornia/tutorials/blob/master/{{ docname }}" target="_blank" rel="noopener noreferrer><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" style="vertical-align:text-bottom"></a>`
         
     __ https://github.com/kornia/tutorials/blob/
         {{ env.config.release }}/{{ docname }}

@@ -9,3 +9,4 @@ torch
 torchvision
 kornia
 matplotlib
+opencv-python

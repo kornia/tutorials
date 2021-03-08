@@ -11,6 +11,7 @@ Welcome to Kornia Tutorials's documentation!
    :caption: Contents:
    
    hello_world_tutorial
+   morphology_101
 
 
 

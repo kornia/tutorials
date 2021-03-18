@@ -12,6 +12,7 @@ Welcome to Kornia Tutorials's documentation!
    
    hello_world_tutorial
    morphology_101
+   Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
 
 
 

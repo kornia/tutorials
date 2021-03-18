@@ -43,7 +43,10 @@ extensions = [
     'sphinx.ext.githubpages',
     'myst_nb'
 ]
-exclude_patterns = ['_build', '**.ipynb_checkpoints']
+exclude_patterns = [
+    '_build', '**.ipynb_checkpoints',
+    "*data_augmentation_kornia_lightning_gpu*",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -67,7 +70,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+# exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
@@ -103,6 +106,9 @@ html_static_path = ['_static']
 # default: ``['localtoc.html', 'relations.html', 'sourcelink.html',
 # 'searchbox.html']``.
 #
+# html_sidebars = {}
+
+
 # html_sidebars = {}
 
 

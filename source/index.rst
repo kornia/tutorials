@@ -13,6 +13,7 @@ Welcome to Kornia Tutorials's documentation!
    hello_world_tutorial
    color_conversions
    morphology_101
+   data_augmenation_segmentation
    Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
 
 

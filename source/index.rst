@@ -20,7 +20,7 @@ Welcome to Kornia Tutorials's documentation!
    color_conversions
    morphology_101
    warp_perspective
-   data_augmenation_segmentation
+   data_augmentation_segmentation
    Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
 
 

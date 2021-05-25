@@ -22,6 +22,7 @@ Welcome to Kornia Tutorials's documentation!
    warp_perspective
    data_augmentation_segmentation
    gaussian_blur
+   Unsharp mask tutorial
    Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
    zca
 

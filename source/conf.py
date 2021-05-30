@@ -47,6 +47,7 @@ extensions = [
 exclude_patterns = [
     '_build', '**.ipynb_checkpoints',
     "*data_augmentation_kornia_lightning_gpu*",
+    "*zca_whitening*",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

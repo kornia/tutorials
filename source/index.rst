@@ -23,6 +23,7 @@ Welcome to Kornia Tutorials's documentation!
    data_augmentation_segmentation
    gaussian_blur
    unsharp_mask
+   canny
    Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
    ZCA Whitening <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/zca_whitening.ipynb>
 

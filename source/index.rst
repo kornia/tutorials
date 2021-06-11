@@ -20,12 +20,15 @@ Welcome to Kornia Tutorials's documentation!
    color_conversions
    morphology_101
    warp_perspective
-   data_augmentation_segmentation
    gaussian_blur
    unsharp_mask
    canny
-   Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
    ZCA Whitening <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/zca_whitening.ipynb>
+   Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
+   data_augmentation_segmentation
+   data_augmentation_sequential
+   data_patch_sequential
+   
 
 
 Indices and tables

@@ -19,6 +19,7 @@ Welcome to Kornia Tutorials's documentation!
    hello_world_tutorial
    color_conversions
    image_enhancement
+   filtering_operators
    morphology_101
    warp_perspective
    gaussian_blur

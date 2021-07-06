@@ -23,6 +23,7 @@ Welcome to Kornia Tutorials's documentation!
    filtering_edges
    morphology_101
    warp_perspective
+   rotate_affine
    gaussian_blur
    unsharp_mask
    canny

@@ -20,6 +20,7 @@ Welcome to Kornia Tutorials's documentation!
    color_conversions
    image_enhancement
    filtering_operators
+   filtering_edges
    morphology_101
    warp_perspective
    gaussian_blur

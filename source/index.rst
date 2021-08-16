@@ -33,6 +33,7 @@ Welcome to Kornia Tutorials's documentation!
    data_augmentation_sequential
    data_patch_sequential
    total_variation_denoising
+   connected_components
 
 
 Indices and tables

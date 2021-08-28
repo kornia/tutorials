@@ -35,6 +35,7 @@ Welcome to Kornia Tutorials's documentation!
    total_variation_denoising
    connected_components
    homography
+   geometric_transforms
 
 
 Indices and tables

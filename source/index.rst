@@ -39,7 +39,7 @@ Welcome to Kornia Tutorials's documentation!
    geometry_generate_patch
    resize_antialias
    aliased_and_not_aliased_patch_extraction
-   descriptors_matching
+   Local descriptors matching <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/descriptors_matching.ipynb>
 
 
 Indices and tables

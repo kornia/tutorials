@@ -34,6 +34,7 @@ Welcome to Kornia Tutorials's documentation!
    data_patch_sequential
    total_variation_denoising
    connected_components
+   homography
 
 
 Indices and tables

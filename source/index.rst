@@ -39,6 +39,7 @@ Welcome to Kornia Tutorials's documentation!
    geometry_generate_patch
    resize_antialias
    aliased_and_not_aliased_patch_extraction
+   descriptors_matching
 
 
 Indices and tables

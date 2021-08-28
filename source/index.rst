@@ -37,6 +37,7 @@ Welcome to Kornia Tutorials's documentation!
    homography
    geometric_transforms
    geometry_generate_patch
+   resize_antialias
    aliased_and_not_aliased_patch_extraction
 
 

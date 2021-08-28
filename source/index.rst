@@ -36,6 +36,7 @@ Welcome to Kornia Tutorials's documentation!
    connected_components
    homography
    geometric_transforms
+   geometry_generate_patch
 
 
 Indices and tables

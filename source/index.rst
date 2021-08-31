@@ -8,13 +8,13 @@ Welcome to Kornia Tutorials's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: GET STARTED
+   :caption: TUTORIALS
 
    🏠 Main page 🏠 <https://kornia.readthedocs.io/en/latest>
 
 .. toctree::
    :maxdepth: 2
-   :caption: TUTORIALS
+   :caption: BASIC
    
    hello_world_tutorial
    color_conversions
@@ -27,20 +27,36 @@ Welcome to Kornia Tutorials's documentation!
    gaussian_blur
    unsharp_mask
    canny
-   ZCA Whitening <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/zca_whitening.ipynb>
+   connected_components
+   resize_antialias
+   aliased_and_not_aliased_patch_extraction
+   image_histogram
+
+.. toctree::
+   :maxdepth: 2
+   :caption: DATA AUGMENTATION
+
    Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
    data_augmentation_segmentation
    data_augmentation_sequential
    data_patch_sequential
-   total_variation_denoising
-   connected_components
-   homography
+
+.. toctree::
+   :maxdepth: 2
+   :caption: INTERMEDIATE
+
    geometric_transforms
    geometry_generate_patch
-   resize_antialias
-   aliased_and_not_aliased_patch_extraction
    Local descriptors matching <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/descriptors_matching.ipynb>
-   image_histogram
+
+.. toctree::
+   :maxdepth: 2
+   :caption: ADVANCED
+
+   homography
+   total_variation_denoising
+   ZCA Whitening <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/zca_whitening.ipynb>
+
 
 
 Indices and tables

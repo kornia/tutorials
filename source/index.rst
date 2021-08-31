@@ -40,6 +40,7 @@ Welcome to Kornia Tutorials's documentation!
    resize_antialias
    aliased_and_not_aliased_patch_extraction
    Local descriptors matching <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/descriptors_matching.ipynb>
+   image_histogram
 
 
 Indices and tables

@@ -9,5 +9,6 @@ myst_nb
 torch
 torchvision
 kornia
+imageio
 matplotlib
 opencv-python

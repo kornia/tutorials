@@ -46,6 +46,7 @@ Welcome to Kornia Tutorials's documentation!
    :caption: INTERMEDIATE
 
    geometric_transforms
+   image_registration
    geometry_generate_patch
    Local descriptors matching <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/descriptors_matching.ipynb>
 

@@ -11,4 +11,5 @@ torchvision
 kornia
 imageio
 matplotlib
+tqdm
 opencv-python

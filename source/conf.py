@@ -100,6 +100,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 #
 # html_theme_options = {}
 html_theme_options = {
+    'analytics_id': 'G-6265VR2XZ3',
     'collapse_navigation': False,
     'display_version': True,
     'logo_only': True,

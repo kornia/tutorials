@@ -30,6 +30,7 @@ Welcome to Kornia Tutorials's documentation!
    connected_components
    resize_antialias
    aliased_and_not_aliased_patch_extraction
+   color_raw_to_rgb
    image_histogram
 
 .. toctree::

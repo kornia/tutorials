@@ -31,7 +31,8 @@ Welcome to Kornia Tutorials's documentation!
    resize_antialias
    aliased_and_not_aliased_patch_extraction
    image_histogram
-
+   color_yuv420_to_rgb
+   
 .. toctree::
    :maxdepth: 2
    :caption: DATA AUGMENTATION

@@ -91,36 +91,53 @@ napolean_use_rtype = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme = 'furo'
+
+html_theme_options = {
+    'light_logo': 'img/kornia_logo_only_light.svg',
+    'dark_logo': 'img/kornia_logo_only_dark.svg',
+    "sidebar_hide_name": True,
+    "navigation_with_keys": True,
+    "light_css_variables": {
+        "color-sidebar-background": "#3980F5",
+        "color-sidebar-background-border": "#3980F5",
+        "color-sidebar-caption-text": "white",
+        "color-sidebar-link-text--top-level": "white",
+        "color-sidebar-link-text": "white",
+        "sidebar-caption-font-size": "normal",
+        "color-sidebar-item-background--hover": " #5dade2",
+    },
+    "dark_css_variables": {
+        "color-sidebar-background": "#1a1c1e",
+        "color-sidebar-background-border": "#1a1c1e",
+        "color-sidebar-caption-text": "white",
+        "color-sidebar-link-text--top-level": "white",
+    },
+
+    # "announcement": """
+    #     <a style=\"text-decoration: none; color: white;\"
+    #        href=\"https://github.com/kornia/kornia\">
+    #        <img src=\"https://github.com/kornia/data/raw/main/GitHub-Mark-Light-32px.png\" width=20 height=20/>
+    #        Star Kornia on GitHub
+    #     </a>
+    # """,
+}
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
 # html_theme_options = {}
-html_theme_options = {
-    'analytics_id': 'G-6265VR2XZ3',
-    'collapse_navigation': False,
-    'display_version': True,
-    'logo_only': True,
-}
 
-html_logo = '_static/img/kornia_logo.svg'
-html_favicon = '_static/img/kornia_logo_mini.png'
+html_favicon = '_static/img/kornia_logo_favicon.png'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-# html_style_path = 'css/pytorch_theme.css'
-html_context = {
-    'css_files': [
-        'https://fonts.googleapis.com/css?family=Lato',
-        '_static/css/pytorch_theme.css'
-    ],
-}
+html_css_files = ['css/main.css']
+html_js_files = ['js/custom.js']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.

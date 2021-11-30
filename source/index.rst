@@ -52,6 +52,8 @@ Welcome to Kornia Tutorials's documentation!
    image_matching
    geometry_generate_patch
    Local descriptors matching <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/descriptors_matching.ipynb>
+   face_detection
+   image_stitching
 
 .. toctree::
    :maxdepth: 2

@@ -19,6 +19,7 @@ Welcome to Kornia Tutorials's documentation!
    hello_world_tutorial
    color_conversions
    image_enhancement
+   extract_combine_patches
    filtering_operators
    filtering_edges
    morphology_101

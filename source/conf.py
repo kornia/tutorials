@@ -52,6 +52,7 @@ exclude_patterns = [
     "*data_augmentation_kornia_lightning_gpu*",
     "*zca_whitening*",
     "*descriptors_matching*",
+    "*image_stitching*",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

@@ -42,6 +42,7 @@ Welcome to Kornia Tutorials's documentation!
    Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
    data_augmentation_segmentation
    data_augmentation_sequential
+   data_augmentation_mosiac
    data_patch_sequential
 
 .. toctree::

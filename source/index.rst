@@ -52,6 +52,7 @@ Welcome to Kornia Tutorials's documentation!
    image_registration
    image_matching
    image_matching_adalam
+   line_detection_and_matching_sold2
    geometry_generate_patch
    Local descriptors matching <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/descriptors_matching.ipynb>
    face_detection

@@ -44,6 +44,7 @@ Welcome to Kornia Tutorials's documentation!
    data_augmentation_sequential
    data_augmentation_mosiac
    data_patch_sequential
+   image_points_transforms
 
 .. toctree::
    :maxdepth: 2

@@ -1,0 +1,8 @@
+furo
+imageio
+kornia
+matplotlib
+opencv-python
+torch
+torchvision
+tqdm

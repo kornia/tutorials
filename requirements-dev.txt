@@ -1,1 +1,8 @@
+myst_nb
+nbconvert
+pandoc
 pre-commit
+sphinx >=4.0
+sphinx-design
+sphinx_rtd_theme>0.5
+sphinxemoji

@@ -16,57 +16,57 @@ Welcome to Kornia Tutorials's documentation!
    :maxdepth: 2
    :caption: BASIC
    
-   hello_world_tutorial
-   color_conversions
-   image_enhancement
-   extract_combine_patches
-   filtering_operators
-   filtering_edges
-   morphology_101
-   warp_perspective
-   rotate_affine
-   gaussian_blur
-   unsharp_mask
-   canny
-   connected_components
-   resize_antialias
-   aliased_and_not_aliased_patch_extraction
-   color_raw_to_rgb
-   image_histogram
-   color_yuv420_to_rgb
+   _nbs/hello_world_tutorial
+   _nbs/color_conversions
+   _nbs/image_enhancement
+   _nbs/extract_combine_patches
+   _nbs/filtering_operators
+   _nbs/filtering_edges
+   _nbs/morphology_101
+   _nbs/warp_perspective
+   _nbs/rotate_affine
+   _nbs/gaussian_blur
+   _nbs/unsharp_mask
+   _nbs/canny
+   _nbs/connected_components
+   _nbs/resize_antialias
+   _nbs/aliased_and_not_aliased_patch_extraction
+   _nbs/color_raw_to_rgb
+   _nbs/image_histogram
+   _nbs/color_yuv420_to_rgb
    
 .. toctree::
    :maxdepth: 2
    :caption: DATA AUGMENTATION
 
-   data_augmentation_kornia_lightning
-   data_augmentation_segmentation
-   data_augmentation_sequential
-   data_augmentation_mosiac
-   data_patch_sequential
-   image_points_transforms
+   _nbs/data_augmentation_kornia_lightning
+   _nbs/data_augmentation_segmentation
+   _nbs/data_augmentation_sequential
+   _nbs/data_augmentation_mosiac
+   _nbs/data_patch_sequential
+   _nbs/image_points_transforms
 
 .. toctree::
    :maxdepth: 2
    :caption: INTERMEDIATE
 
-   geometric_transforms
-   image_registration
-   image_matching
-   image_matching_adalam
-   line_detection_and_matching_sold2
-   geometry_generate_patch
-   descriptors_matching
-   face_detection
-   image_stitching
+   _nbs/geometric_transforms
+   _nbs/image_registration
+   _nbs/image_matching
+   _nbs/image_matching_adalam
+   _nbs/line_detection_and_matching_sold2
+   _nbs/geometry_generate_patch
+   _nbs/descriptors_matching
+   _nbs/face_detection
+   _nbs/image_stitching
 
 .. toctree::
    :maxdepth: 2
    :caption: ADVANCED
 
-   homography
-   total_variation_denoising
-   zca_whitening
+   _nbs/homography
+   _nbs/total_variation_denoising
+   _nbs/zca_whitening
 
 
 

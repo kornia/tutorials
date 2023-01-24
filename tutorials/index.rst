@@ -39,7 +39,7 @@ Welcome to Kornia Tutorials's documentation!
    :maxdepth: 2
    :caption: DATA AUGMENTATION
 
-   Kornia and PyTorch Lightning GPU data augmentation <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/data_augmentation_kornia_lightning_gpu.ipynb>
+   data_augmentation_kornia_lightning
    data_augmentation_segmentation
    data_augmentation_sequential
    data_augmentation_mosiac
@@ -66,7 +66,7 @@ Welcome to Kornia Tutorials's documentation!
 
    homography
    total_variation_denoising
-   ZCA Whitening <https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/source/zca_whitening.ipynb>
+   zca_whitening
 
 
 

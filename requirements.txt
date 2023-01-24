@@ -3,6 +3,7 @@ imageio
 kornia
 matplotlib
 opencv-python
+tensorboard
 torch
 torchvision
 tqdm

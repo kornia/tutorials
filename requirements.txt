@@ -1,5 +1,8 @@
 furo
 imageio
+IProgress
+ipywidgets
+jupyterlab_widgets
 kornia
 matplotlib
 opencv-python
@@ -7,3 +10,4 @@ tensorboard
 torch
 torchvision
 tqdm
+

@@ -223,3 +223,16 @@ epub_title = project
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
+
+# -- Options for myst_nb -----------------------------------------------------
+nb_execution_timeout = 120 # in seconds
+nb_execution_in_temp = False
+nb_execution_raise_on_error = True
+nb_number_source_lines = True
+nb_output_stderr = 'remove'
+
+# Add here just notebooks which takes too long to run e.g. training a model
+nb_execution_excludepatterns = [
+'data_augmentation_kornia_lightning.ipynb',
+'image_matching.ipynb',
+]

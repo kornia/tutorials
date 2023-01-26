@@ -4,6 +4,7 @@ IProgress
 ipywidgets
 jupyterlab_widgets
 kornia
+kornia-rs
 matplotlib
 opencv-python
 tensorboard

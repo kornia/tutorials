@@ -5,6 +5,7 @@ sphinxemoji
 nbconvert
 pandoc
 myst_nb
+kornia-rs
 # execute
 torch
 torchvision

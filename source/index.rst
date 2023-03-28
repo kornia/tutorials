@@ -55,6 +55,7 @@ Welcome to Kornia Tutorials's documentation!
    image_registration
    image_matching
    image_matching_adalam
+   image_matching_disk
    line_detection_and_matching_sold2
    geometry_generate_patch
    descriptors_matching

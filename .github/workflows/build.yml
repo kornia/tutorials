@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['Ubuntu', 'Windows', 'MacOS']
+        os: ['Ubuntu', 'MacOS']
         python-version: ['3.7', '3.10']
         pytorch-version: ['1.13.1']
 

@@ -8,8 +8,10 @@ kornia_moons
 matplotlib
 opencv-python
 py7zr
+pytorch_lightning
 rawpy
 tensorboard
 torch
+torchmetrics
 torchvision
 tqdm

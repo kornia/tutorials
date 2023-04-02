@@ -1,4 +1,3 @@
-furo
 imageio
 IProgress
 ipywidgets

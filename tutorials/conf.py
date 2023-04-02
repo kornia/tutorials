@@ -23,7 +23,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'Kornia Tutorials'
-copyright = '2021, Kornia Authors'
+copyright = '2023, Kornia Authors'
 author = 'Kornia Authors'
 
 # The short X.Y version
@@ -37,7 +37,7 @@ release = ''
 # If your documentation needs a minimal Sphinx version, state it here.
 #
 # needs_sphinx = '1.0'
-nbsphinx_timeout = 600
+nbsphinx_timeout = 1200
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.

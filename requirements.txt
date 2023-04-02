@@ -5,10 +5,12 @@ ipywidgets
 jupyterlab_widgets
 kornia
 kornia-rs
+kornia_moons
 matplotlib
 opencv-python
+py7zr
+rawpy
 tensorboard
 torch
 torchvision
 tqdm
-

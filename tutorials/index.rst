@@ -39,6 +39,7 @@ Welcome to Kornia Tutorials's documentation!
    :maxdepth: 2
    :caption: DATA AUGMENTATION
 
+   _nbs/data_augmentation_2d
    _nbs/data_augmentation_kornia_lightning
    _nbs/data_augmentation_segmentation
    _nbs/data_augmentation_sequential
@@ -54,6 +55,7 @@ Welcome to Kornia Tutorials's documentation!
    _nbs/image_registration
    _nbs/image_matching
    _nbs/image_matching_adalam
+   _nbs/image_matching_disk
    _nbs/line_detection_and_matching_sold2
    _nbs/geometry_generate_patch
    _nbs/descriptors_matching

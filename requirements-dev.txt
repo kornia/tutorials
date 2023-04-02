@@ -1,15 +1,6 @@
 furo
-imageio
-kornia
-kornia-rs
-matplotlib
-myst_nb
 myst_nb
 nbconvert
-opencv-python
 pandoc
 pre-commit
 sphinx >=4.0
-torch
-torchvision
-tqdm

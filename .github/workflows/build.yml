@@ -20,9 +20,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['Ubuntu', 'MacOS']
+        os: ['Ubuntu']
         python-version: ['3.7', '3.10']
-        pytorch-version: ['1.13.1']
+        pytorch-version: ['2.0.0']
 
     steps:
     - uses: actions/checkout@v3

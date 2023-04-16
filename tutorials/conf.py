@@ -18,7 +18,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-import sphinx_rtd_theme
+# import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
@@ -235,4 +235,5 @@ nb_output_stderr = 'remove'
 nb_execution_excludepatterns = [
 'data_augmentation_kornia_lightning.ipynb',
 'image_matching.ipynb',
+'image_prompter.ipynb'
 ]

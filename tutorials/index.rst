@@ -61,6 +61,7 @@ Welcome to Kornia Tutorials's documentation!
    _nbs/descriptors_matching
    _nbs/face_detection
    _nbs/image_stitching
+   _nbs/image_prompter
 
 .. toctree::
    :maxdepth: 2

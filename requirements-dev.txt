@@ -1,0 +1,7 @@
+furo
+myst_nb
+nbconvert
+pandoc
+pre-commit
+sphinx >=4.0
+sphinxemoji

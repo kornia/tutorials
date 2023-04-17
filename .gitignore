@@ -1,5 +1,13 @@
-source/.ipynb_checkpoints/*
-.ipynb_checkpoints/*
-**png**
-**jpg**
-**jpeg**
+*.ipynb_checkpoints/*
+.pyc
+
+# Temp files created when building the pages
+_nbs/
+_build/
+
+# Allows just notebooks inside nbs/
+!nbs/**.ipynb
+nbs/*.png*
+nbs/*.jpg*
+nbs/*.jpeg*
+nbs/*.mp*

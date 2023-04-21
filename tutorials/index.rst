@@ -71,6 +71,13 @@ Welcome to Kornia Tutorials's documentation!
    _nbs/total_variation_denoising
    _nbs/zca_whitening
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Training with kornia-x
+
+   training/image_classification
+   training/semantic_segmentation
+   training/object_detection
 
 
 Indices and tables

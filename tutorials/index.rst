@@ -34,6 +34,8 @@ Welcome to Kornia Tutorials's documentation!
    _nbs/color_raw_to_rgb
    _nbs/image_histogram
    _nbs/color_yuv420_to_rgb
+   _nbs/fit_line
+   _nbs/fit_plane
    
 .. toctree::
    :maxdepth: 2

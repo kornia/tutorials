@@ -58,8 +58,8 @@ format:
     code-overflow: scroll
     theme:
       light: 
-        - litera
+        - sandstone
         - tutorials/_static/css/styles_light.css
       dark: 
-        - solar
-        - tutorials/_static/css/styles_dark.css
+        - sandstone
+        - tutorials/_static/css/styles_dark.scss

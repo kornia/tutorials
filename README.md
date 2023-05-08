@@ -31,6 +31,7 @@ A few things need to be accomplished to fully migrate from `sphinx` and `myst-nb
         - [ ] Light theme
     - [ ] Buttons
     - [ ] Use the Kornia logo!!
+- [ ] Migrate the training tutorials (tutorials/training/) `rst` files to work with Quarto
 - [ ] Add a basic front matter into each tutorial! And update the "open in colab" badge to be a HTML tag instead of the markdown thing.
     - [ ] "nbs/aliased_and_not_aliased_patch_extraction.ipynb"
     - [ ] "nbs/canny.ipynb"

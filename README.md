@@ -33,15 +33,15 @@ A few things need to be accomplished to fully migrate from `sphinx` and `myst-nb
     - [ ] Use the Kornia logo!!
 - [ ] Migrate the training tutorials (tutorials/training/) `rst` files to work with Quarto
 - [ ] Add a basic front matter into each tutorial! And update the "open in colab" badge to be a HTML tag instead of the markdown thing.
-    - [ ] "nbs/aliased_and_not_aliased_patch_extraction.ipynb"
-    - [ ] "nbs/canny.ipynb"
-    - [ ] "nbs/color_conversions.ipynb"
-    - [ ] "nbs/color_raw_to_rgb.ipynb"
-    - [ ] "nbs/color_yuv420_to_rgb.ipynb"
-    - [ ] "nbs/connected_components.ipynb"
-    - [ ] "nbs/data_augmentation_2d.ipynb"
-    - [ ] "nbs/data_augmentation_kornia_lightning.ipynb"
-    - [ ] "nbs/data_augmentation_mosiac.ipynb"
+    - [x] "nbs/aliased_and_not_aliased_patch_extraction.ipynb"
+    - [x] "nbs/canny.ipynb"
+    - [x] "nbs/color_conversions.ipynb"
+    - [x] "nbs/color_raw_to_rgb.ipynb"
+    - [x] "nbs/color_yuv420_to_rgb.ipynb"
+    - [x] "nbs/connected_components.ipynb"
+    - [x] "nbs/data_augmentation_2d.ipynb"
+    - [x] "nbs/data_augmentation_kornia_lightning.ipynb"
+    - [x] "nbs/data_augmentation_mosiac.ipynb"
     - [ ] "nbs/data_augmentation_segmentation.ipynb"
     - [ ] "nbs/data_augmentation_sequential.ipynb"
     - [ ] "nbs/data_patch_sequential.ipynb"
@@ -55,7 +55,7 @@ A few things need to be accomplished to fully migrate from `sphinx` and `myst-nb
     - [ ] "nbs/gaussian_blur.ipynb"
     - [ ] "nbs/geometric_transforms.ipynb"
     - [ ] "nbs/geometry_generate_patch.ipynb"
-    - [ ] "nbs/hello_world_tutorial.ipynb"
+    - [x] "nbs/hello_world_tutorial.ipynb"
     - [ ] "nbs/homography.ipynb"
     - [ ] "nbs/image_enhancement.ipynb"
     - [ ] "nbs/image_histogram.ipynb"
@@ -65,12 +65,12 @@ A few things need to be accomplished to fully migrate from `sphinx` and `myst-nb
     - [ ] "nbs/image_points_transforms.ipynb"
     - [ ] "nbs/image_prompter.ipynb"
     - [ ] "nbs/image_registration.ipynb"
-    - [ ] "nbs/image_stitching.ipynb"
+    - [x] "nbs/image_stitching.ipynb"
     - [ ] "nbs/line_detection_and_matching_sold2.ipynb"
     - [ ] "nbs/morphology_101.ipynb"
     - [ ] "nbs/resize_antialias.ipynb"
     - [ ] "nbs/rotate_affine.ipynb"
-    - [ ] "nbs/total_variation_denoising.ipynb"
+    - [x] "nbs/total_variation_denoising.ipynb"
     - [ ] "nbs/unsharp_mask.ipynb"
     - [ ] "nbs/warp_perspective.ipynb"
     - [ ] "nbs/zca_whitening.ipynb"
@@ -126,3 +126,30 @@ To compile the docs in local to debug
 make setup
 make preview
 ```
+
+### Tutorials categories
+If you add a new category on the tutorials frontmatter, update this too.
+
+- Basic
+- Intermediate
+- Advanced
+
+- kornia.augmentation
+- Kornia.feature
+- kornia.contrib
+- kornia.filters
+- kornia.color
+
+- Data augmentation
+- Segmentation
+- Edge Detection
+- Labeling
+- Denoising
+- Color spaces
+
+- HardNet
+- Patches
+- LAF
+- LoFTR
+- 2D
+- Unsupervised

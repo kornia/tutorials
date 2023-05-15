@@ -42,14 +42,14 @@ A few things need to be accomplished to fully migrate from `sphinx` and `myst-nb
     - [x] "nbs/data_augmentation_2d.ipynb"
     - [x] "nbs/data_augmentation_kornia_lightning.ipynb"
     - [x] "nbs/data_augmentation_mosiac.ipynb"
-    - [ ] "nbs/data_augmentation_segmentation.ipynb"
-    - [ ] "nbs/data_augmentation_sequential.ipynb"
-    - [ ] "nbs/data_patch_sequential.ipynb"
-    - [ ] "nbs/descriptors_matching.ipynb"
-    - [ ] "nbs/extract_combine_patches.ipynb"
-    - [ ] "nbs/face_detection.ipynb"
-    - [ ] "nbs/filtering_edges.ipynb"
-    - [ ] "nbs/filtering_operators.ipynb"
+    - [x] "nbs/data_augmentation_segmentation.ipynb"
+    - [x] "nbs/data_augmentation_sequential.ipynb"
+    - [x] "nbs/data_patch_sequential.ipynb"
+    - [x] "nbs/descriptors_matching.ipynb"
+    - [x] "nbs/extract_combine_patches.ipynb"
+    - [x] "nbs/face_detection.ipynb"
+    - [x] "nbs/filtering_edges.ipynb"
+    - [x] "nbs/filtering_operators.ipynb"
     - [ ] "nbs/fit_line.ipynb"
     - [ ] "nbs/fit_plane.ipynb"
     - [ ] "nbs/gaussian_blur.ipynb"
@@ -139,6 +139,7 @@ If you add a new category on the tutorials frontmatter, update this too.
 - kornia.contrib
 - kornia.filters
 - kornia.color
+- kornia.io
 
 - Data augmentation
 - Segmentation
@@ -146,6 +147,9 @@ If you add a new category on the tutorials frontmatter, update this too.
 - Labeling
 - Denoising
 - Color spaces
+- Local features
+- Filters
+- Blur
 
 - HardNet
 - Patches

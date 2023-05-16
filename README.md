@@ -50,30 +50,30 @@ A few things need to be accomplished to fully migrate from `sphinx` and `myst-nb
     - [x] "nbs/face_detection.ipynb"
     - [x] "nbs/filtering_edges.ipynb"
     - [x] "nbs/filtering_operators.ipynb"
-    - [ ] "nbs/fit_line.ipynb"
-    - [ ] "nbs/fit_plane.ipynb"
-    - [ ] "nbs/gaussian_blur.ipynb"
-    - [ ] "nbs/geometric_transforms.ipynb"
-    - [ ] "nbs/geometry_generate_patch.ipynb"
+    - [x] "nbs/fit_line.ipynb"
+    - [x] "nbs/fit_plane.ipynb"
+    - [x] "nbs/gaussian_blur.ipynb"
+    - [x] "nbs/geometric_transforms.ipynb"
+    - [x] "nbs/geometry_generate_patch.ipynb"
     - [x] "nbs/hello_world_tutorial.ipynb"
-    - [ ] "nbs/homography.ipynb"
-    - [ ] "nbs/image_enhancement.ipynb"
-    - [ ] "nbs/image_histogram.ipynb"
-    - [ ] "nbs/image_matching_adalam.ipynb"
-    - [ ] "nbs/image_matching_disk.ipynb"
-    - [ ] "nbs/image_matching.ipynb"
-    - [ ] "nbs/image_points_transforms.ipynb"
-    - [ ] "nbs/image_prompter.ipynb"
-    - [ ] "nbs/image_registration.ipynb"
+    - [x] "nbs/homography.ipynb"
+    - [x] "nbs/image_enhancement.ipynb"
+    - [x] "nbs/image_histogram.ipynb"
+    - [x] "nbs/image_matching_adalam.ipynb"
+    - [x] "nbs/image_matching_disk.ipynb"
+    - [x] "nbs/image_matching.ipynb"
+    - [x] "nbs/image_points_transforms.ipynb"
+    - [x] "nbs/image_prompter.ipynb"
+    - [x] "nbs/image_registration.ipynb"
     - [x] "nbs/image_stitching.ipynb"
-    - [ ] "nbs/line_detection_and_matching_sold2.ipynb"
-    - [ ] "nbs/morphology_101.ipynb"
-    - [ ] "nbs/resize_antialias.ipynb"
-    - [ ] "nbs/rotate_affine.ipynb"
+    - [x] "nbs/line_detection_and_matching_sold2.ipynb"
+    - [x] "nbs/morphology_101.ipynb"
+    - [x] "nbs/resize_antialias.ipynb"
+    - [x] "nbs/rotate_affine.ipynb"
     - [x] "nbs/total_variation_denoising.ipynb"
-    - [ ] "nbs/unsharp_mask.ipynb"
-    - [ ] "nbs/warp_perspective.ipynb"
-    - [ ] "nbs/zca_whitening.ipynb"
+    - [x] "nbs/unsharp_mask.ipynb"
+    - [x] "nbs/warp_perspective.ipynb"
+    - [x] "nbs/zca_whitening.ipynb"
 - [ ] Add/generate a thumbnail and add it into the front matter for each tutorial!
     - [ ] "nbs/aliased_and_not_aliased_patch_extraction.ipynb"
     - [ ] "nbs/canny.ipynb"
@@ -140,6 +140,8 @@ If you add a new category on the tutorials frontmatter, update this too.
 - kornia.filters
 - kornia.color
 - kornia.io
+- kornia.geometry
+- kornia.enhance
 
 - Data augmentation
 - Segmentation
@@ -150,10 +152,28 @@ If you add a new category on the tutorials frontmatter, update this too.
 - Local features
 - Filters
 - Blur
+- Line
+- Plane
+- Keypoints
+- Homography
+- Image matching
+- Image Registration
+- Warp image
+- Augmentation container
+- Augmentation Sequential
+- Line detection
+- Line matching
+- Rescale
+- Affine
 
+- SOLD2
+- KeyNet
+- Adalam
 - HardNet
+- DISK
 - Patches
 - LAF
 - LoFTR
 - 2D
 - Unsupervised
+- Self-supervised

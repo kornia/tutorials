@@ -24,13 +24,7 @@ A few things need to be accomplished to fully migrate from `sphinx` and `myst-nb
         - Added `preview` command to execute the quarto preview to test locally the webpages. **Use this command to develop locally it's easily to debug with it!!**
         - Added `render` command to build the webpages.
     - [x] Added a CI to deploy the quarto build into GH pages!
-- [ ] Customize the theme to look alike the main documentation (furo theme for sphinx)
-    - [ ] Font
-    - [ ] Colors
-        - [ ] Dark theme
-        - [ ] Light theme
-    - [ ] Buttons
-    - [ ] Use the Kornia logo!!
+- [x] Customize the theme to look alike the main documentation (furo theme for sphinx)
 - [ ] Migrate the training tutorials (tutorials/training/) `rst` files to work with Quarto
 - [x] Add a basic front matter into each tutorial! And update the "open in colab" badge to be a HTML tag instead of the markdown thing.
 - [x] Add/generate a thumbnail and add it into the front matter for each tutorial!

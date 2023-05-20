@@ -3,8 +3,8 @@ project:
   type: website
 
 website:
-  title: "Kornia tutorials"
-  description: ''
+  title: "Kornia"
+  description: ""
   page-navigation: true
   favicon: "tutorials/_static/img/kornia_logo_favicon.png"
   site-url: https://kornia.github.io/tutorials/
@@ -14,10 +14,10 @@ website:
   google-analytics: ''
   open-graph: true
 
-  twitter-card: 
+  twitter-card:
     site: "@sitehandle"
 
-  search: 
+  search:
     location: navbar
     type: overlay
 
@@ -25,7 +25,7 @@ website:
     collapse: false
     pinned: true
     search: true
-    logo: "tutorials/_static/img/kornia_logo.svg"
+    logo: "tutorials/_static/img/kornia_logo_mini.png"
     right:
       - icon: github
         href: https://github.com/kornia/
@@ -34,8 +34,25 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/company/kornia/
 
+    left:
+        - text: "Tutorials"
+          file: index.qmd
+        - text: "Docs"
+          href: https://kornia.readthedocs.io
+        - text: "About"
+          href: https://kornia.readthedocs.io/en/latest/get-started/introduction.html
+        - text: "Projects"
+          menu:
+            - text: Kornia
+              href: "https://github.com/kornia/kornia"
+            - text: Limbus
+              href: "https://github.com/kornia/limbus"
+            - text: Kornia-rs
+              href: "https://github.com/kornia/kornia-rs"
+
+
   page-footer:
-    center: 
+    center:
       - text: Copyright © 2023 Kornia. All Rights Reserved.
     right:
       - icon: question-circle-fill
@@ -55,11 +72,21 @@ format:
     fig-responsive: true
     toc: true
     toc-depth: 5
-    code-overflow: scroll
+    mainfont: "Open Sans, sans-serif"
+    fontsize: 18px
+    grid:
+        body-width: 1350px
+        margin-width: 380px
     theme:
-      light: 
+      light:
         - sandstone
-        - tutorials/_static/css/styles_light.css
-      dark: 
+        - tutorials/_static/css/styles_light.scss
+      dark:
         - sandstone
         - tutorials/_static/css/styles_dark.scss
+
+    # Code
+    code-copy: hover
+    highlight-style: monokai
+    code-link: true
+    code-overflow: scroll

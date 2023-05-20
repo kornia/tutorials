@@ -1,5 +1,5 @@
 ---
-title: "Kornia tutorials"
+title: "Tutorials"
 page-layout: full
 title-block-banner: true
 listing:
@@ -7,11 +7,12 @@ listing:
   categories: true
   sort-ui: true
   filter-ui: true
-  fields: [image, date, title, author, categories, description]
-  contents: 
+  fields: [image, date, title, author, categories, description, file-modified]
+  image-placeholder: "tutorials/assets/kornia.png"
+  contents:
     - nbs/
     - tutorials/
-  sort: 
+  sort:
     - "date desc"
     - "title desc"
 ---

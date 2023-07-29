@@ -2,7 +2,7 @@ name: Generate docs and deploy to GitHub Pages
 on:
   workflow_dispatch:
   push:
-    branches: [master, test-me-*, migration/quarto]
+    branches: [master]
 
 jobs:
   deploy:

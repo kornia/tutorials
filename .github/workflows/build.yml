@@ -60,7 +60,7 @@ jobs:
       matrix:
         os: ['Ubuntu']
         python-version: ['3.10']
-        pytorch-version: ['1.13.1']
+        pytorch-version: ['2.0.1']
 
     steps:
     - uses: actions/checkout@v3
@@ -74,13 +74,18 @@ jobs:
     - name: Install dependencies
       shell: bash -l {0}
       run: |
-        conda install pytorch=${{ matrix.pytorch-version }} cpuonly -c pytorch
-        make setup
+        conda install pytorch=${{ matrix.pytorch-version }} torchvision cpuonly -c pytorch
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt;
+
+    - uses: quarto-dev/quarto-actions/setup@v2
 
     - name: Check deps
       shell: bash -l {0}
       run: make check-deps
 
-    - name: Build tutorials pages
-      shell: bash -l {0}
-      run: make generate
+    - name: Render Quarto Project
+      uses: quarto-dev/quarto-actions/render@v2
+      with:
+        to: html
+        path: .

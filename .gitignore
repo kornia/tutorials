@@ -4,6 +4,8 @@
 # Temp files created when building the pages
 _nbs/
 _build/
+/.quarto/
+_site/
 
 # Allows just notebooks inside nbs/
 !nbs/**.ipynb

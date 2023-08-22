@@ -1,0 +1,17 @@
+/*-- scss:defaults --*/
+$body-bg: #131416;
+$body-color: rgb(255, 255, 255, 0.8);
+$primary: #131416;
+$navbar-bg: #1A1C1E;
+$navbar-fg: rgb(255, 255, 255, 0.8);
+$sidebar-bg: #131416;
+$sidebar-fg: rgb(255, 255, 255, 0.8);
+$link-color: #2B8CEE;
+
+// Code blocks
+// $code-block-bg-alpha: -.8;
+$code-block-bg: #272822;
+
+.list div.quarto-post .listing-categories .listing-category {
+   color: rgb(255, 255, 255, 0.8);
+}

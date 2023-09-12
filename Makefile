@@ -1,5 +1,5 @@
 SOURCEDIR     = nbs
-
+DSTDIR = _nbs
 .PHONY: purge generate execute sphinx build setup check-deps
 
 purge:
@@ -8,11 +8,11 @@ purge:
 
 generate:
 	@echo "\n\nGenerating all tutorials notebooks to '$(SOURCEDIR)'...\n"
-	jupyter nbconvert $(SOURCEDIR)/**.ipynb --to notebook --output-dir $(SOURCEDIR)
+	jupyter nbconvert $(SOURCEDIR)/**.ipynb --to notebook --output-dir $(DSTDIR)
 
 execute:
-	@echo "\n\nExecuting all tutorials notebooks under '$(SOURCEDIR)'...\n"
-	jupyter nbconvert $(SOURCEDIR)/**.ipynb --execute --inplace
+	@echo "\n\nExecuting all tutorials notebooks under '$(DSTDIR)'...\n"
+	jupyter nbconvert $(DSTDIR)/**.ipynb --execute --inplace
 
 build: purge generate render
 

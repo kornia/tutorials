@@ -4,7 +4,7 @@ ipywidgets
 jupyterlab_widgets
 kornia
 kornia-rs
-kornia_moons
+kornia_moons==0.2.8
 matplotlib
 opencv-python
 py7zr

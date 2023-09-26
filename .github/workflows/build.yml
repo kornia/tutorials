@@ -42,7 +42,6 @@ jobs:
       run: |
         pip install -r requirements.txt --upgrade
         pip install -r requirements-dev.txt --upgrade
-        pip install -U kornia_moons==0.2.8
 
     - name: Check deps
       shell: bash -l {0}
@@ -82,7 +81,6 @@ jobs:
         conda install pytorch=${{ matrix.pytorch-version }} torchvision cpuonly -c pytorch
         pip install -r requirements.txt  --upgrade
         pip install -r requirements-dev.txt  --upgrade
-        pip install -U kornia_moons==0.2.8
 
     - uses: quarto-dev/quarto-actions/setup@v2
 

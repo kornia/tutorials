@@ -1,3 +1,4 @@
+
 imageio
 IProgress
 ipywidgets
@@ -7,6 +8,8 @@ kornia-rs
 kornia_moons>=0.2.9
 matplotlib
 opencv-python
+pandas
+plotly
 py7zr
 pytorch_lightning
 rawpy

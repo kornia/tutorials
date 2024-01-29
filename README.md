@@ -32,8 +32,8 @@ $ make preview
 $ quarto preview .
 ```
 
-For Linux users, you can use the `make setup` which will download and install the quarto binary for linux. And pip install
-the requirements.
+For Linux users, you can use the `make setup-quarto` which will download and install the quarto binary for linux.
+And the `make setup` which will pip install the requirements.
 
 ### How to add a new tutorial
 

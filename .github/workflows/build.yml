@@ -18,7 +18,7 @@ jobs:
       matrix:
         kornia-ref: ['main'] # TODO: coverage check through multiple versions: , 'v0.7.1', 'v0.7.0']
 
-    uses: kornia/workflows/.github/workflows/tutorials.yml@v1.4.0
+    uses: kornia/workflows/.github/workflows/tutorials.yml@v1.4.1
     with:
       ref: ${{ matrix.kornia-ref }}
 
@@ -33,19 +33,24 @@ jobs:
         kornia-ref: ['main']
 
     steps:
-    - uses: kornia/workflows/.github/actions/env@v1.4.0
+    - uses: kornia/workflows/.github/actions/env@v1.4.1
       with:
         ref: ${{ matrix.kornia-ref }}
 
+    - uses: actions/checkout@v4
+      with:
+        repository: 'kornia/tutorials'
+        path: 'tutorials-repo/'
+
     - name: Install dependencies
+      working-directory: ./tutorials-repo/
       shell: bash -l {0}
-      run: |
-        pip install -r requirements.txt  --upgrade
-        pip install -r requirements-dev.txt  --upgrade
+      run: make setup
 
     - uses: quarto-dev/quarto-actions/setup@v2
 
     - name: Check deps
+      working-directory: ./tutorials-repo/
       shell: bash -l {0}
       run: make check-deps
 
@@ -53,4 +58,4 @@ jobs:
       uses: quarto-dev/quarto-actions/render@v2
       with:
         to: html
-        path: .
+        path: ./tutorials-repo/

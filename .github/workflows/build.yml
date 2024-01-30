@@ -14,77 +14,43 @@ concurrency:
 
 jobs:
   test:
-    name: Run tutorials - ${{ matrix.os }}, ${{ matrix.python-version }}, ${{ matrix.pytorch-version }}
-    runs-on: ${{ matrix.os }}-latest
-
     strategy:
-      fail-fast: false
       matrix:
-        os: ['Ubuntu']
-        python-version: ['3.8', '3.10']
-        pytorch-version: ['2.0.1']
+        kornia-ref: ['main'] # TODO: coverage check through multiple versions: , 'v0.7.1', 'v0.7.0']
 
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Setup environment
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - name: Install pytorch
-      shell: bash
-      run: pip install torch==${{ matrix.pytorch-version }} torchvision --index-url https://download.pytorch.org/whl/cpu
-
-
-    - name: Install dependencies
-      shell: bash -l {0}
-      run: |
-        pip install -r requirements.txt --upgrade
-        pip install -r requirements-dev.txt --upgrade
-
-    - name: Check deps
-      shell: bash -l {0}
-      run: make check-deps
-
-    - name: Generate tutorials
-      shell: bash -l {0}
-      run: make generate
-
-    - name: Run tutorials
-      shell: bash -l {0}
-      run: make execute
+    uses: kornia/workflows/.github/workflows/tutorials.yml@v1.4.1
+    with:
+      ref: ${{ matrix.kornia-ref }}
 
   build:
     needs: test
-    name: Build tutorials - ${{ matrix.os }}, ${{ matrix.python-version }}, ${{ matrix.pytorch-version }}
+    name: Build tutorials
     runs-on: ${{ matrix.os }}-latest
 
     strategy:
       matrix:
-        os: ['Ubuntu']
-        python-version: ['3.10']
-        pytorch-version: ['2.0.1']
+        os: ['ubuntu']
+        kornia-ref: ['main']
 
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Setup conda dependencies
-      uses: conda-incubator/setup-miniconda@v2
+    - uses: kornia/workflows/.github/actions/env@v1.4.1
       with:
-        auto-update-conda: true
-        python-version:  ${{ matrix.python-version }}
+        ref: ${{ matrix.kornia-ref }}
+
+    - uses: actions/checkout@v4
+      with:
+        repository: 'kornia/tutorials'
+        path: 'tutorials-repo/'
 
     - name: Install dependencies
+      working-directory: ./tutorials-repo/
       shell: bash -l {0}
-      run: |
-        conda install pytorch=${{ matrix.pytorch-version }} torchvision cpuonly -c pytorch
-        pip install -r requirements.txt  --upgrade
-        pip install -r requirements-dev.txt  --upgrade
+      run: make setup
 
     - uses: quarto-dev/quarto-actions/setup@v2
 
     - name: Check deps
+      working-directory: ./tutorials-repo/
       shell: bash -l {0}
       run: make check-deps
 
@@ -92,4 +58,4 @@ jobs:
       uses: quarto-dev/quarto-actions/render@v2
       with:
         to: html
-        path: .
+        path: ./tutorials-repo/

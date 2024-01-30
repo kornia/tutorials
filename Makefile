@@ -23,7 +23,6 @@ setup-quarto:
 
 setup:
 	pip install -r requirements.txt && pip install -r requirements-dev.txt;
-	make setup-quarto
 
 preview:
 	quarto preview .

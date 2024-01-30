@@ -20,9 +20,3 @@ repos:
       args: ['--profile=black']
     - id: nbqa-black
       args: ['--nbqa-dont-skip-bad-cells', '--line-length=128']
-
-- repo: https://github.com/fastai/nbdev/
-  rev: 2.3.13
-  hooks:
-    - id: nbdev_clean
-      args: ['--fname', './']

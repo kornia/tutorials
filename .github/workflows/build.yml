@@ -36,6 +36,7 @@ jobs:
     - uses: kornia/workflows/.github/actions/env@v1.8.1
       with:
         ref: ${{ matrix.kornia-ref }}
+        extra-deps: torchvision==0.17.2+cpu
 
     - uses: actions/checkout@v4
       with:

@@ -18,7 +18,7 @@ jobs:
       matrix:
         kornia-ref: ['main'] # TODO: coverage check through multiple versions: , 'v0.7.1', 'v0.7.0']
 
-    uses: kornia/workflows/.github/workflows/tutorials.yml@v1.4.1
+    uses: kornia/workflows/.github/workflows/tutorials.yml@v1.8.1
     with:
       ref: ${{ matrix.kornia-ref }}
 
@@ -33,7 +33,7 @@ jobs:
         kornia-ref: ['main']
 
     steps:
-    - uses: kornia/workflows/.github/actions/env@v1.4.1
+    - uses: kornia/workflows/.github/actions/env@v1.8.1
       with:
         ref: ${{ matrix.kornia-ref }}
 

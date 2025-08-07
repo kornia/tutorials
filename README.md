@@ -114,6 +114,7 @@ By generic type/category
 - 2D
 - Unsupervised
 - Self-supervised
+- Presets
 
 By specific names of models / API
 - SOLD2

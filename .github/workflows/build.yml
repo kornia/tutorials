@@ -18,7 +18,7 @@ jobs:
       matrix:
         kornia-ref: ['main'] # TODO: coverage check through multiple versions: , 'v0.7.1', 'v0.7.0']
 
-    uses: kornia/workflows/.github/workflows/tutorials.yml@v1.10.1
+    uses: kornia/workflows/.github/workflows/tutorials.yml@v1.13.0
     with:
       ref: ${{ matrix.kornia-ref }}
 
@@ -33,10 +33,10 @@ jobs:
         kornia-ref: ['main']
 
     steps:
-    - uses: kornia/workflows/.github/actions/env@v1.10.1
+    - uses: kornia/workflows/.github/actions/env@v1.13.0
       with:
         ref: ${{ matrix.kornia-ref }}
-        extra-deps: torchvision==0.18.1+cpu
+        extra-deps: torchvision==0.20.1+cpu --find-links https://download.pytorch.org/whl/torchvision
 
     - uses: actions/checkout@v4
       with:

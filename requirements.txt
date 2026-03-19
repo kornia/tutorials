@@ -15,7 +15,7 @@ py7zr
 pytorch_lightning
 rawpy
 tensorboard
-torch
+torch>=2.8.0
 torchmetrics
 torchvision
 tqdm

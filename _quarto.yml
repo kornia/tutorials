@@ -11,11 +11,10 @@ website:
   repo-url: https://github.com/kornia/tutorials/
   repo-branch: master
   repo-actions: [edit, source, issue]
-  google-analytics: ''
   open-graph: true
 
   twitter-card:
-    site: "@sitehandle"
+    site: "@kornia_foss"
 
   search:
     location: navbar
@@ -53,7 +52,7 @@ website:
 
   page-footer:
     center:
-      - text: Copyright © 2023 Kornia. All Rights Reserved.
+      - text: Copyright © 2026 Kornia. All Rights Reserved.
     right:
       - icon: question-circle-fill
         href: https://github.com/kornia/kornia/discussions

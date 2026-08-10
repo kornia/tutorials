@@ -36,7 +36,6 @@ jobs:
     - uses: kornia/workflows/.github/actions/env@v1.13.0
       with:
         ref: ${{ matrix.kornia-ref }}
-        extra-deps: torchvision==0.20.1+cpu --find-links https://download.pytorch.org/whl/torchvision
 
     - uses: actions/checkout@v4
       with:
@@ -60,3 +59,32 @@ jobs:
       with:
         to: html
         path: ./tutorials-repo/
+
+    - name: Upload rendered site
+      uses: actions/upload-artifact@v4
+      with:
+        name: site
+        path: ./tutorials-repo/_site
+        retention-days: 3
+
+  deploy:
+    needs: build
+    name: Deploy to GitHub Pages
+    if: github.repository == 'kornia/tutorials' && github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download rendered site
+      uses: actions/download-artifact@v4
+      with:
+        name: site
+        path: _site
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force_orphan: true
+        publish_dir: _site
+        user_name: github-actions[bot]
+        user_email: 41898282+github-actions[bot]@users.noreply.github.com

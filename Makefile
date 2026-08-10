@@ -37,3 +37,5 @@ check-deps:
 	@python -c "import torch;print('Pytorch version: ', torch.__version__)"
 	@python -c "import torchvision;print('Pytorch vision version: ', torchvision.__version__)"
 	@python -c "import cv2;print('OpenCV version: ', cv2.__version__)"
+	@python -c "import kornia_rs;print('Kornia-rs version: ', kornia_rs.__version__)"
+	@python -c "import kornia_moons;print('Kornia-moons imported OK')"

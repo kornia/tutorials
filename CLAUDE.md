@@ -62,9 +62,9 @@ Run `pre-commit run --all-files` to apply formatting before committing.
 
 ## Architecture
 
-- **`nbs/`** — Source Jupyter notebooks (the actual tutorial content)
+- **`nbs/`** — Source Jupyter notebooks (the actual tutorial content). Stored output-stripped; Quarto executes them during render.
 - **`tutorials/assets/`** — Thumbnail images (one per tutorial)
-- **`tutorials/training/`** — Training example scripts (image classification, object detection, semantic segmentation)
+- **`data/`** — Small local fallback assets (e.g. `sharpening.mp4` used by `image_registration.ipynb` when video encoding is unavailable)
 - **`_quarto.yml`** — Quarto site configuration (navbar, theme, analytics)
 - **`index.qmd`** — Landing page
 - **`_site/`** — Generated output (gitignored)

@@ -1,127 +1,78 @@
 # Kornia tutorials
 
-The kornia tutorials provide from basic to advanced tutorials for [kornia library](https://github.com/kornia/kornia).
+Community-made tutorials for the [kornia](https://github.com/kornia/kornia) computer vision library, from basic to advanced. Each tutorial is a Jupyter notebook in [`nbs/`](./nbs/), rendered to a static website with [Quarto](https://quarto.org/).
 
-These tutorials are made by the community for the community. To shows how to use the Kornia API, and also show how these
- computer vision algorithms can be used in a variety of scenarios.
+Read them online: https://kornia.github.io/tutorials/
 
-The kornia tutorials uses the [quarto](https://quarto.org/) framework to generate the website from jupyter notebooks.
+## Setup
 
-## Guide
+1. Install [Quarto](https://quarto.org/docs/get-started/) (on Linux, `make setup-quarto` downloads and installs the binary for you).
+2. Create a virtual environment (Python 3.10+):
 
+   ```console
+   $ virtualenv venv -p python3.10   # or: conda create -p venv python=3.10
+   ```
 
-### Step-by-step setup environment
-1. Install [quarto](https://quarto.org/) following the official docs: https://quarto.org/docs/get-started/
-1. Create a virtual environment
-```console
-# with virtual env
-$ virtualenv venv -p python3.10
-# with conda
-$ conda create -p venv python=3.10
-```
-1. Install the dependencies
-```console
-$ pip install -r requirements.txt
-$ pip install -r requirements-dev.txt
-```
-1. Run quarto on preview mode. Which automatically reloads the browser when input files or document resources change.
-```console
-# Using our makefile command
-$ make preview
-# Using the quarto cli directly
-$ quarto preview .
-```
+3. Install the dependencies:
 
-For Linux users, you can use the `make setup-quarto` which will download and install the quarto binary for linux.
-And the `make setup` which will pip install the requirements.
+   ```console
+   $ pip install -r requirements.txt
+   $ pip install -r requirements-dev.txt
+   ```
 
-### How to add a new tutorial
+4. Preview the site with auto-reload:
 
-The kornia tutorials are jupyter notebooks (you can find them into [./nbs/](./nbs/) directory). Each notebook corresponds into a
-"blogpost" page within the same content. The notebook is compiled into a webpage by quarto, which means you can write a
-tutorial using a jupyter notebook with the normal pattern of Python and Markdown cells. This enable some special features
-, to it we recomment you to check the [quarto docs](https://quarto.org/docs/).
+   ```console
+   $ make preview
+   ```
 
-Aside from the content of the tutorial, the first cell of the notebook should have a header content (markdown cell). This header
-allow us to have thumbmail, author, categories, etc. This header should look like:
+## Adding a new tutorial
 
-```txt
----
-title: "<YOUR TUTORIAL TITLE HERE>"
-description: "<YOUR TUTORIAL DESCRIPTION HERE>"
-author:
-    - "<YOUR NAME HERE>"
-date: "<TUTORIAL DATE INTO FORMAT MM-DD-YYYY>"
-categories:
-    - "<CATEGORY HERE: basic, itermediate or advanced>"
-    - "<CATEGORY HERE, based on the kornia module used: kornia.color, kornia.augmentation, etc>"
-    - "<OTHER CATEGORY: checkout the readme list of categories>"
-    - "<OTHER CATEGORY: checkout the readme list of categories>"
-    - "<OTHER CATEGORY: checkout the readme list of categories>"
-image: "../tutorials/assets/<YOUR TUTORIAL THUMBMAIL FILENAME HERE>.png"
----
+A tutorial is a regular Jupyter notebook (Python + Markdown cells) placed in [`nbs/`](./nbs/). Quarto compiles it into a web page; see the [Quarto docs](https://quarto.org/docs/) for extra features.
 
-<a href="https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/nbs/<YOUR TUTORIAL FILENAME HERE>.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in google colab"></a>
-```
+To add one:
 
-For this header you should generate an image to be used as thumbmail, and save it into the [tutorials/assets/](./tutorials/assets/)
-directory. Also update the link for the colab, so users can directly open your tutorial into the colab. You can add
-`N` categories, look at the categories already available in the README, if you want to use a different one, please update the
-README too.
+1. Create your notebook in `nbs/`.
+2. Make its first cell a Markdown cell with this frontmatter, followed by a Colab badge:
 
+   ```txt
+   ---
+   title: "<TUTORIAL TITLE>"
+   description: "<SHORT DESCRIPTION>"
+   author:
+       - "<YOUR NAME>"
+   date: "<MM-DD-YYYY>"
+   categories:
+       - "<LEVEL: basic, intermediate or advanced>"
+       - "<KORNIA MODULE: kornia.color, kornia.augmentation, ...>"
+       - "<OTHER CATEGORIES: see the list below>"
+   image: "../tutorials/assets/<THUMBNAIL FILENAME>.png"
+   ---
 
-### Tutorials categories
-If you add a new category on the tutorials frontmatter, update this too.
+   <a href="https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/nbs/<NOTEBOOK FILENAME>.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in google colab"></a>
+   ```
 
-By Levels
-- Basic
-- Intermediate
-- Advanced
+3. Add a thumbnail image to [`tutorials/assets/`](./tutorials/assets/).
+4. Pick categories from the list below; if you introduce a new one, add it to this README too.
 
-By module
-- kornia.augmentation
-- Kornia.feature
-- kornia.contrib
-- kornia.filters
-- kornia.color
-- kornia.io
-- kornia.geometry
-- kornia.enhance
+<details>
+<summary><b>Tutorial categories</b> (click to expand)</summary>
 
-By generic type/category
-- Data augmentation
-- Segmentation
-- Edge Detection
-- Labeling
-- Denoising
-- Color spaces
-- Local features
-- Filters
-- Blur
-- Line
-- Plane
-- Keypoints
-- Homography
-- Image matching
-- Image Registration
-- Warp image
-- Augmentation container
-- Augmentation Sequential
-- Line detection
-- Line matching
-- Rescale
-- Affine
-- 2D
-- Unsupervised
-- Self-supervised
-- Presets
+**By level:** Basic, Intermediate, Advanced
 
-By specific names of models / API
-- SOLD2
-- KeyNet
-- Adalam
-- HardNet
-- DISK
-- Patches
-- LAF
-- LoFTR
+**By module:** kornia.augmentation, kornia.feature, kornia.contrib, kornia.filters, kornia.color, kornia.io, kornia.geometry, kornia.enhance
+
+**By type:** Data augmentation, Segmentation, Edge Detection, Labeling, Denoising, Color spaces, Local features, Filters, Blur, Line, Plane, Keypoints, Homography, Image matching, Image Registration, Warp image, Augmentation container, Augmentation Sequential, Line detection, Line matching, Rescale, Affine, 2D, Unsupervised, Self-supervised, Presets
+
+**By model / API name:** SOLD2, KeyNet, Adalam, HardNet, DISK, Patches, LAF, LoFTR
+
+</details>
+
+## Contributing
+
+New tutorials are very welcome, especially ones that fill coverage gaps. Good starting points:
+
+- [Tutorial coverage gaps (#115)](https://github.com/kornia/tutorials/issues/115) — modules with no tutorial yet: depth/3D, camera models, `kornia.io` image loading, ONNX export/deployment.
+- [Open issues](https://github.com/kornia/tutorials/issues) — tutorial requests and other ideas, e.g. [image stitching (#98)](https://github.com/kornia/tutorials/issues/98) or a [LoFTR indoor example (#44)](https://github.com/kornia/tutorials/issues/44).
+
+Before committing, install the hooks with `pre-commit install` (or run `pre-commit run --all-files`) so notebook code style is applied automatically.

@@ -1,0 +1,2387 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tutorials – Kornia</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./tutorials/_static/img/kornia_logo_favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-cad799c3ccb478c5df1200f34d6a15c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b0f4b1433a5603fee508883651f0e4cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-cad799c3ccb478c5df1200f34d6a15c0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-date','listing-title','listing-author','listing-categories','listing-description','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      page: 25,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Tutorials – Kornia">
+<meta property="og:image" content="https://kornia.github.io/tutorials/tutorials/assets/ray_vlm_pipeline.png">
+<meta property="og:site_name" content="Kornia">
+<meta property="og:image:height" content="289">
+<meta property="og:image:width" content="1260">
+<meta name="twitter:title" content="Tutorials – Kornia">
+<meta name="twitter:image" content="https://kornia.github.io/tutorials/tutorials/assets/ray_vlm_pipeline.png">
+<meta name="twitter:site" content="@kornia_foss">
+<meta name="twitter:image-height" content="289">
+<meta name="twitter:image-width" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./tutorials/_static/img/kornia_logo_mini.png" alt="" class="navbar-logo light-content">
+    <img src="./tutorials/_static/img/kornia_logo_mini.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Kornia</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://kornia.readthedocs.io"> 
+<span class="menu-text">Docs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://kornia.readthedocs.io/en/latest/get-started/introduction.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/kornia/kornia">
+ <span class="dropdown-text">Kornia</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/kornia/limbus">
+ <span class="dropdown-text">Limbus</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/kornia/kornia-rs">
+ <span class="dropdown-text">Kornia-rs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kornia/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kornia_foss"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/company/kornia/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Tutorials</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(38)</span></div><div class="category" data-category="MkQ=">2D <span class="quarto-category-count">(6)</span></div><div class="category" data-category="QWRhbGFt">Adalam <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QWR2YW5jZWQ=">Advanced <span class="quarto-category-count">(3)</span></div><div class="category" data-category="QWZmaW5l">Affine <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QXVnbWVudGF0aW9uJTIwY29udGFpbmVy">Augmentation container <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmFzaWM=">Basic <span class="quarto-category-count">(20)</span></div><div class="category" data-category="Qmx1cg==">Blur <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Q29sb3IlMjBzcGFjZXM=">Color spaces <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RGF0YSUyMGF1Z21lbnRhdGlvbg==">Data augmentation <span class="quarto-category-count">(7)</span></div><div class="category" data-category="RGF0YSUyMGxvYWRpbmc=">Data loading <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGVub2lzaW5n">Denoising <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RElTSw==">DISK <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RWRnZSUyMERldGVjdGlvbg==">Edge Detection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RmFjZSUyMGRldGVjdGlvbg==">Face detection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGFyZE5ldA==">HardNet <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SG9tb2dyYXBoeQ==">Homography <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW1hZ2UlMjBtYXRjaGluZw==">Image matching <span class="quarto-category-count">(4)</span></div><div class="category" data-category="SW1hZ2UlMjBSZWdpc3RyYXRpb24=">Image Registration <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW50ZXJtZWRpYXRl">Intermediate <span class="quarto-category-count">(15)</span></div><div class="category" data-category="S2V5TmV0">KeyNet <span class="quarto-category-count">(1)</span></div><div class="category" data-category="S2V5cG9pbnRz">Keypoints <span class="quarto-category-count">(2)</span></div><div class="category" data-category="a29ybmlhLXJz">kornia-rs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="a29ybmlhLmF1Z21lbnRhdGlvbg==">kornia.augmentation <span class="quarto-category-count">(8)</span></div><div class="category" data-category="a29ybmlhLmNvbG9y">kornia.color <span class="quarto-category-count">(3)</span></div><div class="category" data-category="a29ybmlhLmNvbnRyaWI=">kornia.contrib <span class="quarto-category-count">(4)</span></div><div class="category" data-category="a29ybmlhLmVuaGFuY2U=">kornia.enhance <span class="quarto-category-count">(3)</span></div><div class="category" data-category="a29ybmlhLmZlYXR1cmU=">kornia.feature <span class="quarto-category-count">(8)</span></div><div class="category" data-category="a29ybmlhLmZpbHRlcnM=">kornia.filters <span class="quarto-category-count">(2)</span></div><div class="category" data-category="a29ybmlhLmdlb21ldHJ5">kornia.geometry <span class="quarto-category-count">(7)</span></div><div class="category" data-category="a29ybmlhLmlv">kornia.io <span class="quarto-category-count">(1)</span></div><div class="category" data-category="a29ybmlhLm1vcnBob2xvZ3k=">kornia.morphology <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGFiZWxpbmc=">Labeling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TEFG">LAF <span class="quarto-category-count">(4)</span></div><div class="category" data-category="TGlnaHRHbHVl">LightGlue <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGluZQ==">Line <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGluZSUyMGRldGVjdGlvbg==">Line detection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TGluZSUyMG1hdGNoaW5n">Line matching <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TG9jYWwlMjBmZWF0dXJlcw==">Local features <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TG9GVFI=">LoFTR <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TW9ycGhvbG9neQ==">Morphology <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGF0Y2hlcw==">Patches <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UGxhbmU=">Plane <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJlc2V0cw==">Presets <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0b3JjaCUyMGxpZ2h0bmluZw==">Pytorch lightning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVzY2FsZQ==">Rescale <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2VnbWVudGF0aW9u">Segmentation <span class="quarto-category-count">(3)</span></div><div class="category" data-category="U2VsZi1zdXBlcnZpc2Vk">Self-supervised <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U09MRDI=">SOLD2 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VW5zdXBlcnZpc2Vk">Unsupervised <span class="quarto-category-count">(1)</span></div><div class="category" data-category="V2FycCUyMGltYWdl">Warp image <span class="quarto-category-count">(1)</span></div></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+      <option value="listing-author" data-direction="asc">
+        Author
+      </option>
+      <option value="listing-file-modified-sort" data-direction="asc">
+        Modified - Oldest
+      </option>
+      <option value="listing-file-modified-sort" data-direction="desc">
+        Modified - Newest
+      </option>
+    </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="SW50ZXJtZWRpYXRlJTJDRGF0YSUyMGxvYWRpbmclMkNrb3JuaWEtcnM=" data-listing-date-sort="1786320000000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="337">
+<div class="thumbnail"><a href="./nbs/ray_vlm_pipeline.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/ray_vlm_pipeline.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/ray_vlm_pipeline.html" class="no-external">Efficient VLM Data Loading with Ray Data and kornia-rs</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMGxvYWRpbmc='); return false;">Data loading</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLXJz'); return false;">kornia-rs</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/ray_vlm_pipeline.html" class="no-external">
+<p>In this tutorial we build a high-performance image loading pipeline for Vision-Language Models using Ray Data for streaming and kornia-rs for Rust-based image decoding and resizing.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/ray_vlm_pipeline.html" class="no-external">
+<div class="listing-date">
+Aug 10, 2026
+</div>
+<div class="listing-author">
+Sai Vinay Bhoomireddy
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="SW50ZXJtZWRpYXRlJTJDa29ybmlhLmF1Z21lbnRhdGlvbiUyQ1ByZXNldHMlMkNEYXRhJTIwYXVnbWVudGF0aW9uJTJDQXVnbWVudGF0aW9uJTIwY29udGFpbmVyJTJDMkQ=" data-listing-date-sort="1754524800000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="372">
+<div class="thumbnail"><a href="./nbs/adaptive_discriminator_augmentation_preset.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/adaptive_discriminator_augmentation_preset.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/adaptive_discriminator_augmentation_preset.html" class="no-external">Adaptive Discriminator Augmentation Preset</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmF1Z21lbnRhdGlvbg=='); return false;">kornia.augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJlc2V0cw=='); return false;">Presets</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMGF1Z21lbnRhdGlvbg=='); return false;">Data augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QXVnbWVudGF0aW9uJTIwY29udGFpbmVy'); return false;">Augmentation container</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MkQ='); return false;">2D</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/adaptive_discriminator_augmentation_preset.html" class="no-external">
+<p>how to use the AdaptiveDiscriminatorAugmentation API to train Generative Adverserial Networks with limited data</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/adaptive_discriminator_augmentation_preset.html" class="no-external">
+<div class="listing-date">
+Aug 7, 2025
+</div>
+<div class="listing-author">
+Dhia naouali
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="SW50ZXJtZWRpYXRlJTJDTGlnaHRHbHVlJTJDRElTSyUyQ0xBRiUyQ0ltYWdlJTIwbWF0Y2hpbmclMkNrb3JuaWEuZmVhdHVyZQ==" data-listing-date-sort="1700179200000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="74">
+<div class="thumbnail"><a href="./nbs/image_matching_lightglue.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/image_matching_LightGlue.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/image_matching_lightglue.html" class="no-external">Image matching example with LightGlue and DISK</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGlnaHRHbHVl'); return false;">LightGlue</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RElTSw=='); return false;">DISK</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TEFG'); return false;">LAF</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW1hZ2UlMjBtYXRjaGluZw=='); return false;">Image matching</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZlYXR1cmU='); return false;">kornia.feature</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/image_matching_lightglue.html" class="no-external">
+<p>In this tutorial we are going to show how to perform image matching using a LightGlue algorithm with DISK</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/image_matching_lightglue.html" class="no-external">
+<div class="listing-date">
+Nov 17, 2023
+</div>
+<div class="listing-author">
+Dmytro Mishkin
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="SW50ZXJtZWRpYXRlJTJDU2VnbWVudGF0aW9uJTJDa29ybmlhLmNvbnRyaWI=" data-listing-date-sort="1681776000000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1105">
+<div class="thumbnail"><a href="./nbs/visual_prompter.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/visual_prompter.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/visual_prompter.html" class="no-external">Visual Prompter: Segment Anything</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2VnbWVudGF0aW9u'); return false;">Segmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmNvbnRyaWI='); return false;">kornia.contrib</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/visual_prompter.html" class="no-external">
+<p>This tutorials shows how to use our high-level API <em>Visual Prompter</em>. This API allow to set an image, and run multiple queries multiple times on this image. These query can be done with three types of prompts.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/visual_prompter.html" class="no-external">
+<div class="listing-date">
+Apr 18, 2023
+</div>
+<div class="listing-author">
+João G. Atkinson
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="SW50ZXJtZWRpYXRlJTJDRElTSyUyQ0xBRiUyQ0ltYWdlJTIwbWF0Y2hpbmclMkNrb3JuaWEuZmVhdHVyZQ==" data-listing-date-sort="1680307200000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="52">
+<div class="thumbnail"><a href="./nbs/image_matching_disk.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/image_matching_disk.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/image_matching_disk.html" class="no-external">Image matching example with DISK local features</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RElTSw=='); return false;">DISK</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TEFG'); return false;">LAF</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW1hZ2UlMjBtYXRjaGluZw=='); return false;">Image matching</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZlYXR1cmU='); return false;">kornia.feature</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/image_matching_disk.html" class="no-external">
+<p>In this tutorial we are going to show how to perform image matching using a DISK algorithm</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/image_matching_disk.html" class="no-external">
+<div class="listing-date">
+Apr 1, 2023
+</div>
+<div class="listing-author">
+Dmytro Mishkin
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="QmFzaWMlMkMyRCUyQ0RhdGElMjBhdWdtZW50YXRpb24lMkNrb3JuaWEuYXVnbWVudGF0aW9u" data-listing-date-sort="1675468800000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="180">
+<div class="thumbnail"><a href="./nbs/data_augmentation_2d.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/data_augmentation_2d.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/data_augmentation_2d.html" class="no-external">Data Augmentation 2D</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MkQ='); return false;">2D</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMGF1Z21lbnRhdGlvbg=='); return false;">Data augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmF1Z21lbnRhdGlvbg=='); return false;">kornia.augmentation</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/data_augmentation_2d.html" class="no-external">
+<p>A show case of the Data Augmentation operation available on Kornia for images.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/data_augmentation_2d.html" class="no-external">
+<div class="listing-date">
+Feb 4, 2023
+</div>
+<div class="listing-author">
+João Gustavo A. Amorim
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-categories="QmFzaWMlMkNQbGFuZSUyQ2tvcm5pYS5nZW9tZXRyeQ==" data-listing-date-sort="1671148800000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
+<div class="thumbnail"><a href="./nbs/fit_plane.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/fit_plane.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/fit_plane.html" class="no-external">Fit plane tutorial</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGxhbmU='); return false;">Plane</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmdlb21ldHJ5'); return false;">kornia.geometry</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/fit_plane.html" class="no-external">
+<p>This tutorial use shows how to generate a plane based on a mesh. Using the <code>Hyperplane</code> and <code>Hyperplane</code> from <code>kornia.gemetry.plane</code>. As data structure we use <code>kornia.geometry.liegroup.So3</code> e <code>kornia.geometry.vector.Vector3</code></p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/fit_plane.html" class="no-external">
+<div class="listing-date">
+Dec 16, 2022
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-categories="SW50ZXJtZWRpYXRlJTJDTGluZSUyMGRldGVjdGlvbiUyQ0xpbmUlMjBtYXRjaGluZyUyQ1NPTEQyJTJDU2VsZi1zdXBlcnZpc2VkJTJDa29ybmlhLmZlYXR1cmU=" data-listing-date-sort="1661904000000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="146">
+<div class="thumbnail"><a href="./nbs/line_detection_and_matching_sold2.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/line_detection_and_matching_sold2.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/line_detection_and_matching_sold2.html" class="no-external">Line detection and matching example with SOLD2: Self-supervised Occlusion-aware Line Description and Detection</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGluZSUyMGRldGVjdGlvbg=='); return false;">Line detection</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGluZSUyMG1hdGNoaW5n'); return false;">Line matching</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U09MRDI='); return false;">SOLD2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2VsZi1zdXBlcnZpc2Vk'); return false;">Self-supervised</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZlYXR1cmU='); return false;">kornia.feature</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/line_detection_and_matching_sold2.html" class="no-external">
+</a><p><a href="./nbs/line_detection_and_matching_sold2.html" class="no-external">In this tutorial we will show how we can quickly perform line detection, and matching using </a><a href="https://kornia.readthedocs.io/en/latest/feature.html#kornia.feature.SOLD2_detector"><code>kornia.feature.sold2</code></a> API.</p>
+</div>
+</div>
+<div class="metadata">
+<a href="./nbs/line_detection_and_matching_sold2.html" class="no-external">
+<div class="listing-date">
+Aug 31, 2022
+</div>
+<div class="listing-author">
+João G. Atkinson
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="QmFzaWMlMkMyRCUyQ0RhdGElMjBhdWdtZW50YXRpb24lMkNrb3JuaWEuYXVnbWVudGF0aW9u" data-listing-date-sort="1661731200000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
+<div class="thumbnail"><a href="./nbs/data_augmentation_mosaic.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/data_augmentation_mosaic.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/data_augmentation_mosaic.html" class="no-external">Random Mosaic Augmentation</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MkQ='); return false;">2D</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMGF1Z21lbnRhdGlvbg=='); return false;">Data augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmF1Z21lbnRhdGlvbg=='); return false;">kornia.augmentation</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/data_augmentation_mosaic.html" class="no-external">
+</a><p><a href="./nbs/data_augmentation_mosaic.html" class="no-external">In this tutorial we will show how we can quickly perform <strong>mosaicing</strong> using the features provided by the </a><a href="https://kornia.readthedocs.io/en/latest/augmentation.module.html#kornia.augmentation.RandomMosaic"><code>kornia.augmentation.RandomMosaic</code></a> API. <strong>Mosaicing</strong> means taking several input images and combine their random crops into mosaic.</p>
+</div>
+</div>
+<div class="metadata">
+<a href="./nbs/data_augmentation_mosaic.html" class="no-external">
+<div class="listing-date">
+Aug 29, 2022
+</div>
+<div class="listing-author">
+Jian Shi
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="SW50ZXJtZWRpYXRlJTJDS2V5TmV0JTJDTEFGJTJDQWRhbGFtJTJDSW1hZ2UlMjBtYXRjaGluZyUyQ2tvcm5pYS5mZWF0dXJl" data-listing-date-sort="1661126400000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="52">
+<div class="thumbnail"><a href="./nbs/image_matching_adalam.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/image_matching_adalam.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/image_matching_adalam.html" class="no-external">Image matching example with KeyNet-AdaLAM</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('S2V5TmV0'); return false;">KeyNet</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TEFG'); return false;">LAF</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWRhbGFt'); return false;">Adalam</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW1hZ2UlMjBtYXRjaGluZw=='); return false;">Image matching</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZlYXR1cmU='); return false;">kornia.feature</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/image_matching_adalam.html" class="no-external">
+<p>In this tutorial we are going to show how to perform image matching using a KeyNet-Adalam Algorithm</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/image_matching_adalam.html" class="no-external">
+<div class="listing-date">
+Aug 22, 2022
+</div>
+<div class="listing-author">
+Dmytro Mishkin
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-categories="QmFzaWMlMkNMaW5lJTJDa29ybmlhLmdlb21ldHJ5" data-listing-date-sort="1657843200000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
+<div class="thumbnail"><a href="./nbs/fit_line.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/fit_line.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/fit_line.html" class="no-external">Fit line tutorial</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGluZQ=='); return false;">Line</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmdlb21ldHJ5'); return false;">kornia.geometry</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/fit_line.html" class="no-external">
+<p>This tutorial use shows how to generate a line based on points. Using the <code>ParametrizedLine</code> and <code>fit_line</code> from <code>kornia.gemetry.line</code></p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/fit_line.html" class="no-external">
+<div class="listing-date">
+Jul 15, 2022
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-categories="QmFzaWMlMkNQYXRjaGVzJTJDa29ybmlhLmNvbnRyaWI=" data-listing-date-sort="1646611200000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="158">
+<div class="thumbnail"><a href="./nbs/extract_combine_patches.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/extract_combine_patches.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/extract_combine_patches.html" class="no-external">Extracting and Combining Tensor Patches</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGF0Y2hlcw=='); return false;">Patches</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmNvbnRyaWI='); return false;">kornia.contrib</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/extract_combine_patches.html" class="no-external">
+<p>In this tutorial we will show how you can extract and combine tensor patches using kornia</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/extract_combine_patches.html" class="no-external">
+<div class="listing-date">
+Mar 7, 2022
+</div>
+<div class="listing-author">
+Ashwin Nair
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-categories="SW50ZXJtZWRpYXRlJTJDRmFjZSUyMGRldGVjdGlvbiUyQ0JsdXIlMkNrb3JuaWEuY29udHJpYg==" data-listing-date-sort="1638230400000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="63">
+<div class="thumbnail"><a href="./nbs/face_detection.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/face_detection.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/face_detection.html" class="no-external">Face Detection and blurring</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RmFjZSUyMGRldGVjdGlvbg=='); return false;">Face detection</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Qmx1cg=='); return false;">Blur</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmNvbnRyaWI='); return false;">kornia.contrib</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/face_detection.html" class="no-external">
+<p>In this tutorial we will show how to use the Kornia Face Detection and how we can blurring these detected faces.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/face_detection.html" class="no-external">
+<div class="listing-date">
+Nov 30, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="13" data-categories="SW50ZXJtZWRpYXRlJTJDTG9GVFIlMkNrb3JuaWEuZmVhdHVyZQ==" data-listing-date-sort="1637280000000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39">
+<div class="thumbnail"><a href="./nbs/image_stitching.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/image_stitching.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/image_stitching.html" class="no-external">Image stitching example with LoFTR</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TG9GVFI='); return false;">LoFTR</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZlYXR1cmU='); return false;">kornia.feature</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/image_stitching.html" class="no-external">
+<p>A show case of how to do image stitching using LoFTR from Kornia.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/image_stitching.html" class="no-external">
+<div class="listing-date">
+Nov 19, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="14" data-categories="QmFzaWMlMkNDb2xvciUyMHNwYWNlcyUyQ2tvcm5pYS5jb2xvcg==" data-listing-date-sort="1634083200000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
+<div class="thumbnail"><a href="./nbs/color_raw_to_rgb.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/color_raw_to_rgb.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/color_raw_to_rgb.html" class="no-external">Convert RGB to RAW</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29sb3IlMjBzcGFjZXM='); return false;">Color spaces</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmNvbG9y'); return false;">kornia.color</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/color_raw_to_rgb.html" class="no-external">
+<p>In this tutorial we are going to learn how to convert image from raw color using <code>kornia.color</code>.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/color_raw_to_rgb.html" class="no-external">
+<div class="listing-date">
+Oct 13, 2021
+</div>
+<div class="listing-author">
+Oskar Flordal
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="15" data-categories="QmFzaWMlMkNDb2xvciUyMHNwYWNlcyUyQ2tvcm5pYS5jb2xvcg==" data-listing-date-sort="1633824000000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="70">
+<div class="thumbnail"><a href="./nbs/color_yuv420_to_rgb.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/color_yuv420_to_rgb.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/color_yuv420_to_rgb.html" class="no-external">Convert RGB to YUV420</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29sb3IlMjBzcGFjZXM='); return false;">Color spaces</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmNvbG9y'); return false;">kornia.color</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/color_yuv420_to_rgb.html" class="no-external">
+<p>In this tutorial we are going to learn how to convert image from RGB color to YUV420 using <code>kornia.color</code>.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/color_yuv420_to_rgb.html" class="no-external">
+<div class="listing-date">
+Oct 10, 2021
+</div>
+<div class="listing-author">
+Oskar Flordal
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="16" data-categories="QmFzaWMlMkNTZWdtZW50YXRpb24lMkNMYWJlbGluZyUyQ1Vuc3VwZXJ2aXNlZCUyQ2tvcm5pYS5jb250cmli" data-listing-date-sort="1631750400000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="54">
+<div class="thumbnail"><a href="./nbs/connected_components.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/connected_components.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/connected_components.html" class="no-external">Connected Components Algorithm</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2VnbWVudGF0aW9u'); return false;">Segmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGFiZWxpbmc='); return false;">Labeling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VW5zdXBlcnZpc2Vk'); return false;">Unsupervised</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmNvbnRyaWI='); return false;">kornia.contrib</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/connected_components.html" class="no-external">
+</a><p><a href="./nbs/connected_components.html" class="no-external">In this tutorial we are going to learn how to segment small objects in the image using the kornia implementation of the classic Computer Vision technique called <strong></strong></a><strong><a href="https://en.wikipedia.org/wiki/Connected-component_labeling">Connected-component labelling (CCL)</a></strong>.</p>
+</div>
+</div>
+<div class="metadata">
+<a href="./nbs/connected_components.html" class="no-external">
+<div class="listing-date">
+Sep 16, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="17" data-categories="SW50ZXJtZWRpYXRlJTJDTG9GVFIlMkNMQUYlMkNJbWFnZSUyMG1hdGNoaW5nJTJDa29ybmlhLmZlYXR1cmU=" data-listing-date-sort="1631318400000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="125">
+<div class="thumbnail"><a href="./nbs/image_matching.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/image_matching.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/image_matching.html" class="no-external">Image matching example with LoFTR</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TG9GVFI='); return false;">LoFTR</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TEFG'); return false;">LAF</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW1hZ2UlMjBtYXRjaGluZw=='); return false;">Image matching</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZlYXR1cmU='); return false;">kornia.feature</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/image_matching.html" class="no-external">
+<p>In this tutorial we are going to show how to perform image matching using a LoFTR algorithm</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/image_matching.html" class="no-external">
+<div class="listing-date">
+Sep 11, 2021
+</div>
+<div class="listing-author">
+Dmytro Mishkin
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="18" data-categories="SW50ZXJtZWRpYXRlJTJDSW1hZ2UlMjBSZWdpc3RyYXRpb24lMkNrb3JuaWEuZ2VvbWV0cnk=" data-listing-date-sort="1630886400000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="282">
+<div class="thumbnail"><a href="./nbs/image_registration.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/image_registration.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/image_registration.html" class="no-external">Image Registration by Direct Optimization</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW1hZ2UlMjBSZWdpc3RyYXRpb24='); return false;">Image Registration</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmdlb21ldHJ5'); return false;">kornia.geometry</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/image_registration.html" class="no-external">
+<p>In this tutorial we are going to learn how to perform the task of image alignment by optimizing the similarity transformation between two images in order to create a photo with wide in-focus area from set of narrow-focused images.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/image_registration.html" class="no-external">
+<div class="listing-date">
+Sep 6, 2021
+</div>
+<div class="listing-author">
+Dmytro Mishkin
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="19" data-categories="QmFzaWMlMkNDb2xvciUyMHNwYWNlcyUyQ2tvcm5pYS5lbmhhbmNl" data-listing-date-sort="1630368000000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="762">
+<div class="thumbnail"><a href="./nbs/image_histogram.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/image_histogram.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/image_histogram.html" class="no-external">Image histogram and equalizations techniques</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29sb3IlMjBzcGFjZXM='); return false;">Color spaces</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmVuaGFuY2U='); return false;">kornia.enhance</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/image_histogram.html" class="no-external">
+<p>In this tutorial we are going to learn how using kornia components and Matplotlib we can visualize image histograms and later use kornia functionality to equalize images in batch and using the gpu.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/image_histogram.html" class="no-external">
+<div class="listing-date">
+Aug 31, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="20" data-categories="QmFzaWMlMkNSZXNjYWxlJTJDa29ybmlhLmdlb21ldHJ5" data-listing-date-sort="1630108800000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
+<div class="thumbnail"><a href="./nbs/resize_antialias.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/resize_antialias.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/resize_antialias.html" class="no-external">Resize anti-alias</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVzY2FsZQ=='); return false;">Rescale</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmdlb21ldHJ5'); return false;">kornia.geometry</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/resize_antialias.html" class="no-external">
+<p>In this tutorial we are going to learn how to resize an image with anti-alias.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/resize_antialias.html" class="no-external">
+<div class="listing-date">
+Aug 28, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="21" data-categories="SW50ZXJtZWRpYXRlJTJDUGF0Y2hlcyUyQ2tvcm5pYS5nZW9tZXRyeQ==" data-listing-date-sort="1630108800000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="50">
+<div class="thumbnail"><a href="./nbs/geometry_generate_patch.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/geometry_generate_patch.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/geometry_generate_patch.html" class="no-external">Image patch generation</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGF0Y2hlcw=='); return false;">Patches</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmdlb21ldHJ5'); return false;">kornia.geometry</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/geometry_generate_patch.html" class="no-external">
+<p>In this tutorial we are going to learn how to generate image patches using <code>kornia.geometry</code> components.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/geometry_generate_patch.html" class="no-external">
+<div class="listing-date">
+Aug 28, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="22" data-categories="SW50ZXJtZWRpYXRlJTJDTG9jYWwlMjBmZWF0dXJlcyUyQ2tvcm5pYS5mZWF0dXJl" data-listing-date-sort="1630108800000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="253">
+<div class="thumbnail"><a href="./nbs/descriptors_matching.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/descriptor_matching.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/descriptors_matching.html" class="no-external">Image matching example with kornia local features: TFeat, MKD, OriNet, HyNet and OpenCV detector</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TG9jYWwlMjBmZWF0dXJlcw=='); return false;">Local features</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZlYXR1cmU='); return false;">kornia.feature</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/descriptors_matching.html" class="no-external">
+<p>In this tutorial we will show how we can perform image matching using kornia local features</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/descriptors_matching.html" class="no-external">
+<div class="listing-date">
+Aug 28, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="23" data-categories="QmFzaWMlMkNIYXJkTmV0JTJDUGF0Y2hlcyUyQ0xvY2FsJTIwZmVhdHVyZXMlMkNrb3JuaWEuZmVhdHVyZQ==" data-listing-date-sort="1630108800000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="122">
+<div class="thumbnail"><a href="./nbs/aliased_and_not_aliased_patch_extraction.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/aliased_and_not_aliased_patch_extraction.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/aliased_and_not_aliased_patch_extraction.html" class="no-external">Image anti-alias with local features</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SGFyZE5ldA=='); return false;">HardNet</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGF0Y2hlcw=='); return false;">Patches</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TG9jYWwlMjBmZWF0dXJlcw=='); return false;">Local features</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZlYXR1cmU='); return false;">kornia.feature</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/aliased_and_not_aliased_patch_extraction.html" class="no-external">
+<p>In this example we will show the benefits of using anti-aliased patch extraction with kornia.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/aliased_and_not_aliased_patch_extraction.html" class="no-external">
+<div class="listing-date">
+Aug 28, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="24" data-categories="QWR2YW5jZWQlMkNIb21vZ3JhcGh5JTJDa29ybmlhLmdlb21ldHJ5" data-listing-date-sort="1630108800000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="188">
+<div class="thumbnail"><a href="./nbs/homography.html" class="no-external">
+
+<img loading="lazy" src="./tutorials/assets/homography.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/homography.html" class="no-external">Image Alignment by Homography Optimization</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2YW5jZWQ='); return false;">Advanced</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SG9tb2dyYXBoeQ=='); return false;">Homography</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmdlb21ldHJ5'); return false;">kornia.geometry</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/homography.html" class="no-external">
+<p>In this tutorial we are going to learn how to perform the task of image alignment by optimising the homography transformation between two images.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/homography.html" class="no-external">
+<div class="listing-date">
+Aug 28, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="25" data-categories="SW50ZXJtZWRpYXRlJTJDS2V5cG9pbnRzJTJDa29ybmlhLmF1Z21lbnRhdGlvbiUyQ2tvcm5pYS5nZW9tZXRyeSUyQ0FmZmluZSUyQ1dhcnAlMjBpbWFnZQ==" data-listing-date-sort="1630108800000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="681">
+<div class="thumbnail"><a href="./nbs/geometric_transforms.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/geometric_transforms.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/geometric_transforms.html" class="no-external">Geometric image and points transformations</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('S2V5cG9pbnRz'); return false;">Keypoints</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmF1Z21lbnRhdGlvbg=='); return false;">kornia.augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmdlb21ldHJ5'); return false;">kornia.geometry</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWZmaW5l'); return false;">Affine</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('V2FycCUyMGltYWdl'); return false;">Warp image</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/geometric_transforms.html" class="no-external">
+<p>In this tutorial we will learn how to generate and manipulate geometrically synthetic images and use their transformations to manipulate 2D points and how to combine with <code>torch</code> components to perform data augmention.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/geometric_transforms.html" class="no-external">
+<div class="listing-date">
+Aug 28, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="26" data-categories="QmFzaWMlMkNrb3JuaWEuZmlsdGVycyUyQ0JsdXI=" data-listing-date-sort="1625529600000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="210">
+<div class="thumbnail"><a href="./nbs/filtering_operators.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/filtering_operators.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/filtering_operators.html" class="no-external">Filtering Operators</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZpbHRlcnM='); return false;">kornia.filters</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Qmx1cg=='); return false;">Blur</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/filtering_operators.html" class="no-external">
+<p>In this tutorial we are going to learn how to apply blurring and sharpening filters to images with <code>kornia.filters</code> components.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/filtering_operators.html" class="no-external">
+<div class="listing-date">
+Jul 6, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="27" data-categories="QmFzaWMlMkNFZGdlJTIwRGV0ZWN0aW9uJTJDa29ybmlhLmZpbHRlcnM=" data-listing-date-sort="1625529600000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="190">
+<div class="thumbnail"><a href="./nbs/filtering_edges.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/filtering_edges.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/filtering_edges.html" class="no-external">Edge Detection</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWRnZSUyMERldGVjdGlvbg=='); return false;">Edge Detection</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmZpbHRlcnM='); return false;">kornia.filters</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/filtering_edges.html" class="no-external">
+<p>In this tutorial we are going to learn how to detect edges in images with <code>kornia.filters</code> components.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/filtering_edges.html" class="no-external">
+<div class="listing-date">
+Jul 6, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="28" data-categories="QmFzaWMlMkNrb3JuaWEuZW5oYW5jZQ==" data-listing-date-sort="1625443200000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="28">
+<div class="thumbnail"><a href="./nbs/image_enhancement.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/image_enhancement.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/image_enhancement.html" class="no-external">Image Enhancement</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmVuaGFuY2U='); return false;">kornia.enhance</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/image_enhancement.html" class="no-external">
+<p>In this tutorial we are going to learn how to tweak image properties using the compoments from <code>kornia.enhance</code>.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/image_enhancement.html" class="no-external">
+<div class="listing-date">
+Jul 5, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="29" data-categories="SW50ZXJtZWRpYXRlJTJDMkQlMkNEYXRhJTIwYXVnbWVudGF0aW9uJTJDUGF0Y2hlcyUyQ2tvcm5pYS5hdWdtZW50YXRpb24=" data-listing-date-sort="1623369600000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="76">
+<div class="thumbnail"><a href="./nbs/data_patch_sequential.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/data_patch_sequential.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/data_patch_sequential.html" class="no-external">Patch Sequential</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW50ZXJtZWRpYXRl'); return false;">Intermediate</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MkQ='); return false;">2D</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMGF1Z21lbnRhdGlvbg=='); return false;">Data augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGF0Y2hlcw=='); return false;">Patches</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmF1Z21lbnRhdGlvbg=='); return false;">kornia.augmentation</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/data_patch_sequential.html" class="no-external">
+<p>In this tutorial we will show how we can quickly perform <strong>patch processing</strong> using the features provided by the <code>kornia.augmentation.PatchSequential</code> API.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/data_patch_sequential.html" class="no-external">
+<div class="listing-date">
+Jun 11, 2021
+</div>
+<div class="listing-author">
+Jian Shi
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="30" data-categories="QWR2YW5jZWQlMkNEZW5vaXNpbmc=" data-listing-date-sort="1623024000000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
+<div class="thumbnail"><a href="./nbs/total_variation_denoising.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/total_variation_denoising.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/total_variation_denoising.html" class="no-external">Denoise image using total variation</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2YW5jZWQ='); return false;">Advanced</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGVub2lzaW5n'); return false;">Denoising</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/total_variation_denoising.html" class="no-external">
+<p>In this tutorial we are going to learn how to denoise an image using the differentiable <code>total_variation</code> loss.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/total_variation_denoising.html" class="no-external">
+<div class="listing-date">
+Jun 7, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="31" data-categories="QWR2YW5jZWQlMkNrb3JuaWEuZW5oYW5jZQ==" data-listing-date-sort="1622332800000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="373">
+<div class="thumbnail"><a href="./nbs/zca_whitening.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/zca_whitening.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/zca_whitening.html" class="no-external">ZCA Whitening</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2YW5jZWQ='); return false;">Advanced</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmVuaGFuY2U='); return false;">kornia.enhance</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/zca_whitening.html" class="no-external">
+</a><p><a href="./nbs/zca_whitening.html" class="no-external">The following tutorial will show you how to perform ZCA data whitening on a dataset using <code>kornia.enhance.zca</code>. The documentation for ZCA whitening can be found </a><a href="https://kornia.readthedocs.io/en/latest/enhance.html#kornia.enhance.ZCAWhitening">here</a>.</p>
+</div>
+</div>
+<div class="metadata">
+<a href="./nbs/zca_whitening.html" class="no-external">
+<div class="listing-date">
+May 30, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="32" data-categories="QmFzaWMlMkMyRCUyQ0RhdGElMjBhdWdtZW50YXRpb24lMkNrb3JuaWEuYXVnbWVudGF0aW9uJTJDS2V5cG9pbnRz" data-listing-date-sort="1622332800000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="67">
+<div class="thumbnail"><a href="./nbs/data_augmentation_sequential.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/data_augmentation_sequential.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/data_augmentation_sequential.html" class="no-external">Augmentation Sequential</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MkQ='); return false;">2D</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMGF1Z21lbnRhdGlvbg=='); return false;">Data augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmF1Z21lbnRhdGlvbg=='); return false;">kornia.augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('S2V5cG9pbnRz'); return false;">Keypoints</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/data_augmentation_sequential.html" class="no-external">
+<p>In this tutorial we will show how we can quickly perform <strong>data augmentation for various tasks</strong> (segmentation, detection, regression) using the features provided by the <code>kornia.augmentation.AugmentationSequential</code> API.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/data_augmentation_sequential.html" class="no-external">
+<div class="listing-date">
+May 30, 2021
+</div>
+<div class="listing-author">
+Jian Shi
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="33" data-categories="QmFzaWMlMkMyRCUyQ1NlZ21lbnRhdGlvbiUyQ0RhdGElMjBhdWdtZW50YXRpb24lMkNrb3JuaWEuYXVnbWVudGF0aW9u" data-listing-date-sort="1616803200000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="38">
+<div class="thumbnail"><a href="./nbs/data_augmentation_segmentation.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/data_augmentation_segmentation.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/data_augmentation_segmentation.html" class="no-external">Data Augmentation Semantic Segmentation</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('MkQ='); return false;">2D</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2VnbWVudGF0aW9u'); return false;">Segmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMGF1Z21lbnRhdGlvbg=='); return false;">Data augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmF1Z21lbnRhdGlvbg=='); return false;">kornia.augmentation</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/data_augmentation_segmentation.html" class="no-external">
+<p>In this tutorial we will show how we can quickly perform <strong>data augmentation for semantic segmentation</strong> using the <code>kornia.augmentation</code> API.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/data_augmentation_segmentation.html" class="no-external">
+<div class="listing-date">
+Mar 27, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="34" data-categories="QmFzaWMlMkNEYXRhJTIwYXVnbWVudGF0aW9uJTJDUHl0b3JjaCUyMGxpZ2h0bmluZyUyQ2tvcm5pYS5hdWdtZW50YXRpb24=" data-listing-date-sort="1616025600000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="34">
+<div class="thumbnail"><a href="./nbs/data_augmentation_kornia_lightning.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/kornia.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/data_augmentation_kornia_lightning.html" class="no-external">Kornia and PyTorch Lightning GPU data augmentation</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMGF1Z21lbnRhdGlvbg=='); return false;">Data augmentation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0b3JjaCUyMGxpZ2h0bmluZw=='); return false;">Pytorch lightning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmF1Z21lbnRhdGlvbg=='); return false;">kornia.augmentation</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/data_augmentation_kornia_lightning.html" class="no-external">
+<p>In this tutorial we show how one can combine both Kornia and PyTorch Lightning to perform data augmentation to train a model using CPUs and GPUs in batch mode without additional effort.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/data_augmentation_kornia_lightning.html" class="no-external">
+<div class="listing-date">
+Mar 18, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="35" data-categories="QmFzaWMlMkNDb2xvciUyMHNwYWNlcyUyQ2tvcm5pYS5jb2xvcg==" data-listing-date-sort="1616025600000" data-listing-file-modified-sort="1786360937884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="78">
+<div class="thumbnail"><a href="./nbs/color_conversions.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/color_conversions.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/color_conversions.html" class="no-external">Color space conversion</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29sb3IlMjBzcGFjZXM='); return false;">Color spaces</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmNvbG9y'); return false;">kornia.color</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/color_conversions.html" class="no-external">
+<p>In this tutorial we are going to learn how to convert image from different color spaces using <code>kornia.color</code>.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/color_conversions.html" class="no-external">
+<div class="listing-date">
+Mar 18, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="36" data-categories="QmFzaWMlMkNNb3JwaG9sb2d5JTJDa29ybmlhLm1vcnBob2xvZ3k=" data-listing-date-sort="1615161600000" data-listing-file-modified-sort="1786360937886" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="187">
+<div class="thumbnail"><a href="./nbs/morphology_101.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/morphology_101.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/morphology_101.html" class="no-external">Introduction to Morphological Operators</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TW9ycGhvbG9neQ=='); return false;">Morphology</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLm1vcnBob2xvZ3k='); return false;">kornia.morphology</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/morphology_101.html" class="no-external">
+<p>In this tutorial you are gonna explore <strong>kornia.morphology</strong>, that’s Kornia’s module for differentiable Morphological Operators.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./nbs/morphology_101.html" class="no-external">
+<div class="listing-date">
+Mar 8, 2021
+</div>
+<div class="listing-author">
+Juclique
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="37" data-categories="QmFzaWMlMkNrb3JuaWEuaW8=" data-listing-date-sort="1611187200000" data-listing-file-modified-sort="1786360937885" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="345">
+<div class="thumbnail"><a href="./nbs/hello_world_tutorial.html" class="no-external">
+
+<img loading="lazy" data-src="./tutorials/assets/hello_world_tutorial.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./nbs/hello_world_tutorial.html" class="no-external">Hello world: Planet Kornia</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFzaWM='); return false;">Basic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a29ybmlhLmlv'); return false;">kornia.io</div>
+
+</div>
+<div class="delink listing-description"><a href="./nbs/hello_world_tutorial.html" class="no-external">
+</a><p><a href="./nbs/hello_world_tutorial.html" class="no-external">Welcome to Planet Kornia: a set of tutorials to learn about <strong>Computer Vision</strong> in </a><a href="https://pytorch.org">PyTorch</a>.</p>
+</div>
+</div>
+<div class="metadata">
+<a href="./nbs/hello_world_tutorial.html" class="no-external">
+<div class="listing-date">
+Jan 21, 2021
+</div>
+<div class="listing-author">
+Edgar Riba
+</div>
+<div class="metadata-value listing-file-modified">
+8/10/26, 11:22:17 AM
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/kornia\.github\.io\/tutorials\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Copyright © 2026 Kornia. All Rights Reserved.
+  </li>  
+</ul>
+    <div class="toc-actions"><ul><li><a href="https://github.com/kornia/tutorials/edit/master/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/kornia/tutorials/blob/master/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/kornia/tutorials/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kornia/kornia/discussions">
+      <i class="bi bi-question-circle-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kornia/kornia/">
+      <i class="bi bi-lightbulb-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/kornia_foss">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/company/kornia/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

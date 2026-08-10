@@ -1,10 +1,9 @@
-
 imageio
 IProgress
 ipywidgets
 jupyterlab_widgets
 kornia
-kornia-rs>=0.1.10
+kornia-rs>=0.1.14
 kornia_moons>=0.2.9
 matplotlib
 numpy<=2.0.0
@@ -12,8 +11,10 @@ opencv-python
 pandas
 plotly
 py7zr
+pydantic
 pytorch_lightning
 rawpy
+ray[data]
 tensorboard
 torch>=2.8.0
 torchmetrics

@@ -16,7 +16,7 @@ pytorch_lightning
 rawpy
 ray[data]
 tensorboard
-torch>=2.8.0
+torch>=2.14.0
 torchmetrics
-torchvision
+torchvision>=0.29.0
 tqdm

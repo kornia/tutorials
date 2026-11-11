@@ -6,7 +6,7 @@ kornia
 kornia-rs>=0.1.14
 kornia_moons>=0.2.9
 matplotlib
-numpy<=2.0.0
+numpy>=2.1
 opencv-python
 pandas
 plotly
